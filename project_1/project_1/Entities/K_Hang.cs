@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using project_1.Utility;
 using System.Text;
 
 namespace project_1.Entities
 {
     //Khai báo các thông tin liên quan đến khách hàng
-    class K_Hang
+    public class K_Hang
     {
         #region Các thành phần dữ liệu
             private int makh;
