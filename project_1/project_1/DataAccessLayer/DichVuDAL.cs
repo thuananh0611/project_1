@@ -6,32 +6,32 @@ using System.IO;
 using project_1.Entities;
 namespace project_1.DataAccessLayer
 {
-    class K_hangDAL : IK_hangDAL
+    class DichVuDAL : IDichVuDAL
     {
-        //Xác định đường dẫn của tệp dữ liệu K_hang.txt
-        private string txtfile = "K_hang.txt";
-        //Lấy toàn bộ dữ liệu có trong file K_hang.txt đưa vào một danh sách
-        public List<K_Hang> GetData()
+        //Xác định đường dẫn của tệp dữ liệu DichVu.txt
+        private string txtfile = "DichVu.txt";
+        //Lấy toàn bộ dữ liệu có trong file DichVu.txt đưa vào một danh sách
+        public List<DichVu> GetData()
         {
-            List<K_Hang> list = new List<K_Hang>();
+            List<DichVu> list = new List<DichVu>();
             StreamReader fread = File.OpenText(txtfile);
             string s = fread.ReadLine();
-            while ( s != null)
+            while (s != null)
             {
                 if (s != "")
                 {
                     s = project_1.Utility.CongCu.CatXau(s);
                     string[] a = s.Split('#');
-                    list.Add(new K_Hang(int.Parse(a[0]), a[1], a[2], DateTime.Parse(a[3]), a[4]));
-                    
+                    list.Add(new DichVu(a[0], a[1], a[2], double.Parse(a[3]), a[4], DateTime.Parse(a[5])));
+
                 }
                 s = fread.ReadLine();
             }
             fread.Close();
             return list;
         }
-        //Lấy mã khách hàng trong bản ghi cuối cùng phục vụ cho đánh mã tự động
-        public int MaKH
+        //Lấy mã dịch vụ trong bản ghi cuối cùng phục vụ cho đánh mã tự động
+        public int MaDV
         {
             get
             {
@@ -54,20 +54,20 @@ namespace project_1.DataAccessLayer
             }
         }
         //Chèn một bản ghi khách hàng vào tệp
-        public void Insert(K_Hang kh)
+        public void Insert(DichVu dv)
         {
-            int makh = MaKH + 1;
+            int madv = MaDV + 1;
             StreamWriter fwrite = File.AppendText(txtfile);
             fwrite.WriteLine();
-            fwrite.Write(makh + "#" + kh.Hoten + "#" + kh.Diachi + "#" + kh.Ngaysinh + "#" + kh.Sdt);
+            fwrite.Write(madv + "#" + dv.Ml + "#" + dv.Tendv + "#" + dv.Gia + "#" + dv.Donvi + "#" + dv.Ngay);
             fwrite.Close();
         }
         //Cập nhật lại danh sách vào tệp
-        public void Update(List<K_Hang> list)
+        public void Update(List<DichVu> list)
         {
             StreamWriter fwrite = File.CreateText(txtfile);
             for (int i = 0; i < list.Count; ++i)
-                fwrite.WriteLine(list[i].Makh + "#" + list[i].Hoten + "#" + list[i].Diachi + "#" + list[i].Ngaysinh + "#" + list[i].Sdt);
+                fwrite.WriteLine(list[i].Madv + "#" + list[i].Ml + "#" + list[i].Tendv + "#" + list[i].Gia + "#" + list[i].Donvi + "#" + list[i].Ngay);
             fwrite.Close();
         }
     }

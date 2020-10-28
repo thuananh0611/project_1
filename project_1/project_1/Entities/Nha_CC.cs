@@ -4,7 +4,7 @@ using System.Text;
 
 namespace project_1.Entities
 {
-    class Nha_CC
+    public class Nha_CC
     {
         #region Các thành phần dữ liệu
         private string mancc;

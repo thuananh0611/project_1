@@ -6,32 +6,31 @@ using System.IO;
 using project_1.Entities;
 namespace project_1.DataAccessLayer
 {
-    class K_hangDAL : IK_hangDAL
+    class HD_BanDAL : IHD_BanDAL
     {
-        //Xác định đường dẫn của tệp dữ liệu K_hang.txt
-        private string txtfile = "K_hang.txt";
-        //Lấy toàn bộ dữ liệu có trong file K_hang.txt đưa vào một danh sách
-        public List<K_Hang> GetData()
+        //Xác định đường dẫn của tệp dữ liệu HD_Ban.txt
+        private string txtfile = "HD_Ban.txt";
+        //Lấy toàn bộ dữ liệu có trong file HD_Ban.txt đưa vào một danh sách
+        public List<HD_Ban> GetData()
         {
-            List<K_Hang> list = new List<K_Hang>();
+            List<HD_Ban> list = new List<HD_Ban>();
             StreamReader fread = File.OpenText(txtfile);
             string s = fread.ReadLine();
-            while ( s != null)
+            while (s != null)
             {
                 if (s != "")
                 {
                     s = project_1.Utility.CongCu.CatXau(s);
                     string[] a = s.Split('#');
-                    list.Add(new K_Hang(int.Parse(a[0]), a[1], a[2], DateTime.Parse(a[3]), a[4]));
-                    
+                    list.Add(new HD_Ban(a[0], a[1], a[2], a[3], a[4], a[5], a[6], double.Parse(a[7]), double.Parse(a[8])));
+                    s = fread.ReadLine();
                 }
-                s = fread.ReadLine();
             }
             fread.Close();
             return list;
         }
-        //Lấy mã khách hàng trong bản ghi cuối cùng phục vụ cho đánh mã tự động
-        public int MaKH
+        //Lấy mã hóa đơn bán trong bản ghi cuối cùng phục vụ cho đánh mã tự động
+        public int MaHDB
         {
             get
             {
@@ -53,21 +52,21 @@ namespace project_1.DataAccessLayer
                 }
             }
         }
-        //Chèn một bản ghi khách hàng vào tệp
-        public void Insert(K_Hang kh)
+        //Chèn một bản ghi hóa đơn bán vào tệp
+        public void Insert(HD_Ban hdb)
         {
-            int makh = MaKH + 1;
+            int mhdb = MaHDB + 1;
             StreamWriter fwrite = File.AppendText(txtfile);
             fwrite.WriteLine();
-            fwrite.Write(makh + "#" + kh.Hoten + "#" + kh.Diachi + "#" + kh.Ngaysinh + "#" + kh.Sdt);
+            fwrite.Write(hdb.Mal + "#" + mhdb + "#" + hdb.Manv + "#" + hdb.Tenhd + "#" + hdb.Msp + "#" + hdb.Makh + "#" + hdb.Thanhtien + hdb.VAT);
             fwrite.Close();
         }
         //Cập nhật lại danh sách vào tệp
-        public void Update(List<K_Hang> list)
+        public void Update(List<HD_Ban> list)
         {
             StreamWriter fwrite = File.CreateText(txtfile);
             for (int i = 0; i < list.Count; ++i)
-                fwrite.WriteLine(list[i].Makh + "#" + list[i].Hoten + "#" + list[i].Diachi + "#" + list[i].Ngaysinh + "#" + list[i].Sdt);
+                fwrite.WriteLine(list[i].Mal + "#" + list[i].Mhdb + "#" + list[i].Manv + "#" + list[i].Tenhd + "#" + list[i].Msp + "#" + list[i].Mdv + "#" + list[i].Makh + "#" + list[i].Thanhtien + "#" + list[i].VAT);
             fwrite.Close();
         }
     }

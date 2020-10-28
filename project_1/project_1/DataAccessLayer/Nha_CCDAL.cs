@@ -6,32 +6,32 @@ using System.IO;
 using project_1.Entities;
 namespace project_1.DataAccessLayer
 {
-    class K_hangDAL : IK_hangDAL
+    class Nha_CCDAL : INha_CCDAL
     {
-        //Xác định đường dẫn của tệp dữ liệu K_hang.txt
-        private string txtfile = "K_hang.txt";
-        //Lấy toàn bộ dữ liệu có trong file K_hang.txt đưa vào một danh sách
-        public List<K_Hang> GetData()
+        //Xác định đường dẫn của tệp dữ liệu Nha_CC.txt
+        private string txtfile = "Nha_CC.txt";
+        //Lấy toàn bộ dữ liệu có trong file Nha_CC.txt đưa vào một danh sách
+        public List<Nha_CC> GetData()
         {
-            List<K_Hang> list = new List<K_Hang>();
+            List<Nha_CC> list = new List<Nha_CC>();
             StreamReader fread = File.OpenText(txtfile);
             string s = fread.ReadLine();
-            while ( s != null)
+            while (s != null)
             {
                 if (s != "")
                 {
                     s = project_1.Utility.CongCu.CatXau(s);
                     string[] a = s.Split('#');
-                    list.Add(new K_Hang(int.Parse(a[0]), a[1], a[2], DateTime.Parse(a[3]), a[4]));
-                    
+                    list.Add(new Nha_CC(a[0], a[1], a[2], a[3]));
+
                 }
                 s = fread.ReadLine();
             }
             fread.Close();
             return list;
         }
-        //Lấy mã khách hàng trong bản ghi cuối cùng phục vụ cho đánh mã tự động
-        public int MaKH
+        //Lấy mã nhà cung cấp trong bản ghi cuối cùng phục vụ cho đánh mã tự động
+        public int MaNCC
         {
             get
             {
@@ -53,21 +53,21 @@ namespace project_1.DataAccessLayer
                 }
             }
         }
-        //Chèn một bản ghi khách hàng vào tệp
-        public void Insert(K_Hang kh)
+        //Chèn một bản ghi nhà cung cấp vào tệp
+        public void Insert(Nha_CC ncc)
         {
-            int makh = MaKH + 1;
+            int mancc = MaNCC + 1;
             StreamWriter fwrite = File.AppendText(txtfile);
             fwrite.WriteLine();
-            fwrite.Write(makh + "#" + kh.Hoten + "#" + kh.Diachi + "#" + kh.Ngaysinh + "#" + kh.Sdt);
+            fwrite.Write(mancc + "#" + ncc.Tenncc + "#" + ncc.Diachi + "#" + ncc.Sdt);
             fwrite.Close();
         }
         //Cập nhật lại danh sách vào tệp
-        public void Update(List<K_Hang> list)
+        public void Update(List<Nha_CC> list)
         {
             StreamWriter fwrite = File.CreateText(txtfile);
             for (int i = 0; i < list.Count; ++i)
-                fwrite.WriteLine(list[i].Makh + "#" + list[i].Hoten + "#" + list[i].Diachi + "#" + list[i].Ngaysinh + "#" + list[i].Sdt);
+                fwrite.WriteLine(list[i].Mancc + "#" + list[i].Tenncc + "#" + list[i].Diachi + "#" + list[i].Sdt);
             fwrite.Close();
         }
     }

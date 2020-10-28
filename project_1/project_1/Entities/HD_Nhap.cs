@@ -8,7 +8,7 @@ namespace project_1.Entities
     {
         #region Các thành phần dữ liệu
         private string mal;
-        private string mhdb;
+        private string mhdn;
         private string manv;
         private string tenhd;
         private string msp;
@@ -26,10 +26,10 @@ namespace project_1.Entities
             get { return mal; }
             set { if (value != "") mal = value; }
         }
-        public string Mhdb
+        public string Mhdn
         {
-            get { return mhdb; }
-            set { if (value != "") mhdb = value; }
+            get { return mhdn; }
+            set { if (value != "") mhdn = value; }
         }
         public string Manv
         {
@@ -85,7 +85,7 @@ namespace project_1.Entities
         public HD_Nhap(HD_Nhap hdn)
         {
             this.mal = hdn.mal;
-            this.mhdb = hdn.mhdb;
+            this.mhdn = hdn.mhdn;
             this.manv = hdn.manv;
             this.tenhd = hdn.tenhd;
             this.msp = hdn.msp;
@@ -96,10 +96,10 @@ namespace project_1.Entities
             this.thanhtien = hdn.thanhtien;
             this.vat = hdn.vat;
         }
-        public HD_Nhap(string mal, string mhdb, string manv, string tenhd, string msp, int sl, string mancc, string donvi, double gianhap, double thanhtien, double vat)
+        public HD_Nhap(string mal, string mhdn, string manv, string tenhd, string msp, int sl, string mancc, string donvi, double gianhap, double thanhtien, double vat)
         {
             this.mal = mal;
-            this.mhdb = mhdb;
+            this.mhdn = mhdn;
             this.manv = manv;
             this.tenhd = tenhd;
             this.msp = msp;
