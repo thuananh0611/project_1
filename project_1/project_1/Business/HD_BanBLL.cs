@@ -4,7 +4,7 @@ using System.Text;
 
 namespace project_1.Business
 {
-    class K_hangBLL
+    class HD_BanBLL
     {
     }
 }
