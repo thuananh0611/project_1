@@ -11,7 +11,7 @@ namespace project_1.Business
         List<NhanVien> LayDSNhanVien();
         void ThemNhanVien(NhanVien nv);
         void XoaNhanVien(string mnv);
-        void SuaNhanVvien(NhanVien nv);
+        void SuaNhanVien(NhanVien nv);
         List<NhanVien> TimNhanVien(NhanVien nv);
         
         NhanVien LayNhanVien(string manv);

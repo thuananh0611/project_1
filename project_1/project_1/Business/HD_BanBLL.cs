@@ -68,7 +68,7 @@ namespace project_1.Business
                 hdbDA.Update(list);
             }
             else
-                throw new Exception("Khong ton tai hs nay");
+                throw new Exception("Khong ton tai hd ban nay");
         }
         public List<HD_Ban> TimHD_Ban(HD_Ban hdb)
         {

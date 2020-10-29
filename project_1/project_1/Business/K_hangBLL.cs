@@ -68,7 +68,7 @@ namespace project_1.Business
                 khDA.Update(list);
             }
             else
-                throw new Exception("Khong ton tai hs nay");
+                throw new Exception("Khong ton tai kh nay");
         }
         public List<K_Hang> TimK_Hang(K_Hang kh)
         {
@@ -98,7 +98,7 @@ namespace project_1.Business
                         kq.Add(new K_Hang(list[i]));
                     }
             }
-            //Tim ket hop giua ho ten va mã dịch vụ
+            //Tim ket hop giua ten va mã khach hang
             else if (kh.Hoten != null && kh.Makh != 0)
             {
                 for (int i = 0; i < list.Count; ++i)

@@ -68,7 +68,7 @@ namespace project_1.Business
                 hdnDA.Update(list);
             }
             else
-                throw new Exception("Khong ton tai hs nay");
+                throw new Exception("Khong ton tai hd nhap nay");
         }
         public List<HD_Nhap> TimHD_Nhap(HD_Nhap hdn)
         {

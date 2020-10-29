@@ -68,7 +68,7 @@ namespace project_1.Business
                 nccDA.Update(list);
             }
             else
-                throw new Exception("Khong ton tai hs nay");
+                throw new Exception("Khong ton tai nha cc nay");
         }
         public List<Nha_CC> TimNha_CC(Nha_CC ncc)
         {

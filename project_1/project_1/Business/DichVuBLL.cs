@@ -68,7 +68,7 @@ namespace project_1.Business
                 dvDA.Update(list);
             }
             else
-                throw new Exception("Khong ton tai hs nay");
+                throw new Exception("Khong ton tai dv nay");
         }
         public List<DichVu> TimDichVu(DichVu dv)
         {
@@ -98,7 +98,7 @@ namespace project_1.Business
                         kq.Add(new DichVu(list[i]));
                     }
             }
-            //Tim ket hop giua ho ten va mã dịch vụ
+            //Tim ket hop giua ten va mã dịch vụ
             else if (dv.Tendv != null && dv.Madv != "")
             {
                 for (int i = 0; i < list.Count; ++i)
