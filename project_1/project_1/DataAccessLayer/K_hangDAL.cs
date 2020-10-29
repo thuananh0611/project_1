@@ -6,11 +6,11 @@ using System.IO;
 using project_1.Entities;
 namespace project_1.DataAccessLayer
 {
-    class K_hangDAL : IK_hangDAL
+    class K_HangDAL : IK_HangDAL
     {
-        //Xác định đường dẫn của tệp dữ liệu K_hang.txt
-        private string txtfile = "K_hang.txt";
-        //Lấy toàn bộ dữ liệu có trong file K_hang.txt đưa vào một danh sách
+        //Xác định đường dẫn của tệp dữ liệu K_Hang.txt
+        private string txtfile = "K_Hang.txt";
+        //Lấy toàn bộ dữ liệu có trong file K_Hang.txt đưa vào một danh sách
         public List<K_Hang> GetData()
         {
             List<K_Hang> list = new List<K_Hang>();

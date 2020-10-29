@@ -107,7 +107,7 @@ namespace project_1.Business
                         kq.Add(new DichVu(list[i]));
                     }
             }
-            //Cac truong hop khac cac ban tu lam
+            
             else kq = null;
             return kq;
         }

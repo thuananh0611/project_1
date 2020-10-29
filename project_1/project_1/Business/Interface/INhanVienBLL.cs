@@ -1,10 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
+using project_1.Utility;
 using System.Text;
-
-namespace project_1.Business.Interface
+using project_1.DataAccessLayer;
+using project_1.Entities;
+namespace project_1.Business
 {
-    class INhanVienBLL
+    //Xác định các yêu cầu nghiệp vụ của bài toán cần phải thực thi
+    public interface INhanVienBLL
     {
+        List<NhanVien> LayDSNhanVien();
+        void ThemNhanVien(NhanVien nv);
+        void XoaNhanVien(string mnv);
+        void SuaNhanVvien(NhanVien nv);
+        List<NhanVien> TimNhanVien(NhanVien nv);
+        
+        NhanVien LayNhanVien(string manv);
     }
 }
