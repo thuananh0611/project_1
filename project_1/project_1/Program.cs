@@ -1,6 +1,6 @@
 ﻿using System;
 using project_1.Utility;
-namespace Demo
+namespace p
 {
     public class Program
     {

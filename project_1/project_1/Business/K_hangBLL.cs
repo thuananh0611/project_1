@@ -83,6 +83,7 @@ namespace project_1.Business
             if (kh.Hoten != null && kh.Makh == 0 && kh.Diachi == null)
             {
                 for (int i = 0; i < list.Count; ++i)
+
                     if (list[i].Hoten.IndexOf(kh.Hoten) >= 0)
                     {
                         kq.Add(new K_Hang(list[i]));
