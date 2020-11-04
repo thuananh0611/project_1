@@ -9,7 +9,7 @@ namespace project_1.Presenation
         public MenuDemo(string[] mn) : base(mn) { }
         public override void ThucHien(int vitri)
         {
-            FormK_hang khachhang = new FormK_hang();
+            FormK_Hang khachhang = new FormK_Hang();
             switch (vitri)
             {
                 case 0:
@@ -22,7 +22,7 @@ namespace project_1.Presenation
                     khachhang.Xoa();
                     break;
                 case 3:
-                    khachhang.SuaKhachHang();
+                    khachhang.SuaK_Hang();
                     break;
                 case 4:
                     Environment.Exit(0);
