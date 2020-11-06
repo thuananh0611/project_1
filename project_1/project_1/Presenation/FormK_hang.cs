@@ -117,7 +117,7 @@ namespace project_1.Presenation
                 IO.Writexy("Ho ten:", 5, 4);
                 Hien(1, 8, khachhang.LayDSK_Hang(), 5, 0);
                 hoten = IO.ReadString(13, 4);
-                List<K_Hang> list = khachhang.TimK_Hang(new K_Hang(0, hoten, null, DateTime.Now, null));
+                List<K_Hang> list = khachhang.TimK_Hang(new K_Hang(0, hoten, null, DateTime.Parse(null), null));
                 Hien(1, 8, list, 5, 1);
                 if (hoten == "") break;
             } while (true);
