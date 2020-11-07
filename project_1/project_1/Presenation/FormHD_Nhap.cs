@@ -34,113 +34,138 @@ namespace project_1.Presenation
                 Hien(1, 13, hdnhap.LayDSHD_Nhap(), 5, 0);
                 HD_Nhap hdn = new HD_Nhap();
                 hdn.Mal = IO.ReadString(13, 4);
-                hs.QueQuan = IO.ReadString(40, 4);
-                hs.DToan = double.Parse("0" + IO.ReadNumber(16, 6));
-                hs.DLy = double.Parse("0" + IO.ReadNumber(34, 6));
-                hs.DHoa = double.Parse("0" + IO.ReadNumber(55, 6));
+                hdn.Mhdn = IO.ReadString(23, 4);
+                hdn.Manv = IO.ReadString(33, 4);
+                hdn.Tenhd = IO.ReadString(43, 4);
+                hdn.Msp = IO.ReadString(53, 4);
+                hdn.Sl = int.Parse("0" + IO.ReadNumber(63, 4));
+                hdn.Mancc = IO.ReadString(23, 5);
+                hdn.Donvi = IO.ReadString(33, 5);
+                hdn.Gianhap = double.Parse("0" + IO.ReadNumber(43, 5));
+                hdn.Thanhtien = double.Parse("0" + IO.ReadNumber(53, 5));
+                hdn.VAT = double.Parse("0" + IO.ReadNumber(63, 5));
                 Console.SetCursorPosition(50, 8);
                 ConsoleKeyInfo kt = Console.ReadKey();
-                if (kt.Key == ConsoleKey.Escape) Demo.Program.Hien();
-                else if (kt.Key == ConsoleKey.V) Hien(1, 13, hocsinh.LayDSHocSinh(), 5, 1);
-                else if (kt.Key == ConsoleKey.Enter) hocsinh.ThemHocSinh(hs);
+                if (kt.Key == ConsoleKey.Escape) project_1.Program.Hien();
+                else if (kt.Key == ConsoleKey.V) Hien(1, 13, hdnhap.LayDSHD_Nhap(), 5, 1);
+                else if (kt.Key == ConsoleKey.Enter) hdnhap.ThemHD_Nhap(hdn);
             } while (true);
         }
-        public void SuaHocSinh()
+        public void SuaHD_Nhap()
         {
-            IHocSinhBLL hocsinh = new HocSinhBLL();
+            IHD_NhapBLL hdnhap = new HD_NhapBLL();
             Console.Clear();
-            IO.BoxTitle("CẠP NHAT THONG TIN HOC SINH ", 1, 1, 10, 79);
-            IO.Writexy("Ma hs:", 5, 4);
-            IO.Writexy("Ho ten:", 20, 4);
-            IO.Writexy("Que quan:", 45, 4);
-            IO.Writexy("Diem toan:", 5, 6);
-            IO.Writexy("Diem ly:", 25, 6);
-            IO.Writexy("Diem hoa:", 45, 6);
+            IO.BoxTitle("CẬP NHẬT THÔNG TIN HÓA ĐƠN NHẬP", 1, 1, 10, 79);
+            IO.Writexy("Mã loại hóa đơn:", 5, 4);
+            IO.Writexy("Mã hóa đơn nhập:", 20, 4);
+            IO.Writexy("Mã nhân viên nhập:", 45, 4);
+            IO.Writexy("Tên hóa đơn nhập:", 5, 6);
+            IO.Writexy("Mã sản phẩm:", 25, 6);
+            IO.Writexy("Số lượng nhập:", 45, 6);
+            IO.Writexy("Mã nhà cung cấp:", 45, 7);
+            IO.Writexy("Đơn vị tính:", 45, 7);
+            IO.Writexy("Giá nhập:", 45, 7);
+            IO.Writexy("Thành tiền:", 45, 7);
+            IO.Writexy("VAT:", 45, 7);
             IO.Writexy("----------------------------------------------------------------------------", 2, 7);
             IO.Writexy("Enter de cap nhat, Esc de thoat, V xem chi tiet!", 5, 8);
-            Hien(1, 13, hocsinh.LayDSHocSinh(), 5, 0);
-            int mahs;
-            string hoten;
-            string quequan;
-            double dtoan;
-            double dly;
-            double dhoa;
+            Hien(1, 13, hdnhap.LayDSHD_Nhap(), 5, 0);
+            string mal;
+            string mhdn;
+            string manv;
+            string tenhd;
+            string msp;
+            int sl;
+            string mancc;
+            string donvi;
+            double gianhap;
+            double thanhtien;
+            double vat;
+            mhdn = IO.ReadString(12, 4);
+            HD_Nhap hdn = hdnhap.LayHD_Nhap(mhdn);
+            IO.Writexy(hdn.Mal, 28, 4);
+            IO.Writexy(hdn.Manv, 55, 4);
+            IO.Writexy(hdn.Tenhd, 65, 4);
+            IO.Writexy(hdn.Msp, 75, 4);
+            IO.Writexy(hdn.Sl.ToString(), 85, 4);
+            IO.Writexy(hdn.Mancc, 25, 5);
+            IO.Writexy(hdn.Donvi, 35, 5);
+            IO.Writexy(hdn.Gianhap.ToString(), 45, 5);
+            IO.Writexy(hdn.Thanhtien.ToString(), 55, 5);
+            IO.Writexy(hdn.VAT.ToString(), 65, 5);
+            
 
-            mahs = int.Parse(IO.ReadNumber(12, 4));
-            HocSinh hs = hocsinh.LayHocSinh(mahs);
-            IO.Writexy(hs.Hoten, 28, 4);
-            IO.Writexy(hs.QueQuan, 55, 4);
-            IO.Writexy(hs.DToan.ToString(), 16, 6);
-            IO.Writexy(hs.DLy.ToString(), 34, 6);
-            IO.Writexy(hs.DHoa.ToString(), 55, 6);
-
-            hoten = IO.ReadString(28, 4);
-            if (hoten != hs.Hoten && hoten != null) hs.Hoten = hoten;
-            quequan = IO.ReadString(55, 4);
-            if (quequan != hs.QueQuan && quequan != null) hs.QueQuan = quequan;
-            dtoan = double.Parse("0" + IO.ReadNumber(16, 6));
-            if (dtoan != hs.DToan && dtoan != 0) hs.DToan = dtoan;
-            dly = double.Parse("0" + IO.ReadNumber(34, 6));
-            if (dly != hs.DLy && dly != 0) hs.DLy = dly;
-            dhoa = double.Parse("0" + IO.ReadNumber(55, 6));
-            if (dhoa != hs.DHoa && dhoa != 0) hs.DHoa = dhoa;
+            mal = IO.ReadString(28, 4);
+            if (mal != hdn.Mal && mal != null) hdn.Mal = mal;
+            manv = IO.ReadString(55, 4);
+            if (manv != hdn.Manv && manv != null) hdn.Manv = manv;
+            tenhd = IO.ReadString(65, 4);
+            if (tenhd != hdn.Tenhd && tenhd != null) hdn.Tenhd = tenhd;
+            msp = IO.ReadString(75, 4);
+            if (msp != hdn.Msp && msp != null) hdn.Msp = msp;
+            sl = int.Parse("0" + IO.ReadNumber(85, 4));
+            if (sl != hdn.Sl && sl != 0) hdn.Sl = sl;
+            mancc = IO.ReadString(25, 5);
+            if (mancc != hdn.Mancc && mancc != null) hdn.Mancc = mancc;
+            donvi = IO.ReadString(35, 5);
+            if (donvi != hdn.Donvi && donvi != null) hdn.Donvi = donvi;
+            gianhap = double.Parse("0" + IO.ReadNumber(45, 5));
+            if (gianhap != hdn.Gianhap && gianhap != 0) hdn.Gianhap = gianhap;
+            thanhtien = double.Parse("0" + IO.ReadNumber(55, 5));
+            if (thanhtien != hdn.Thanhtien && thanhtien != 0) hdn.Thanhtien = thanhtien;
+            vat = double.Parse("0" + IO.ReadNumber(65, 5));
+            if (vat != hdn.VAT && vat != 0) hdn.VAT = vat;
 
 
             Console.SetCursorPosition(60, 8);
             ConsoleKeyInfo kt = Console.ReadKey();
-            if (kt.Key == ConsoleKey.Escape) Demo.Program.Hien();
-            else if (kt.Key == ConsoleKey.V) Hien(1, 13, hocsinh.LayDSHocSinh(), 5, 1);
+            if (kt.Key == ConsoleKey.Escape) project_1.Program.Hien();
+            else if (kt.Key == ConsoleKey.V) Hien(1, 13, hdnhap.LayDSHD_Nhap(), 5, 1);
             else if (kt.Key == ConsoleKey.Enter)
             {
-                hocsinh.SuaHocSinh(hs);
-                Hien(1, 13, hocsinh.LayDSHocSinh(), 5, 1);
+                hdnhap.SuaHD_Nhap(hdn);
+                Hien(1, 13, hdnhap.LayDSHD_Nhap(), 5, 1);
             }
-            Demo.Program.Hien();
+            project_1.Program.Hien();
         }
         public void Xoa()
         {
-            int mahs = 0;
+            string mhdn = "";
             do
             {
                 Console.Clear();
-                IHocSinhBLL hocsinh = new HocSinhBLL();
+                IHD_NhapBLL hdnhap = new HD_NhapBLL();
                 Console.Clear();
-                IO.BoxTitle("NHAP THONG TIN DOI TUONG CAN XOA ", 1, 1, 5, 79);
-                IO.Writexy("Ma hoc sinh:", 5, 4);
-                Hien(1, 8, hocsinh.LayDSHocSinh(), 5, 0);
-                mahs = int.Parse(IO.ReadNumber(18, 4));
-                if (mahs == 0) break;
-                else hocsinh.XoaHocSinh(mahs);
-                Hien(1, 8, hocsinh.LayDSHocSinh(), 5, 1);
+                IO.BoxTitle("NHẬP THÔNG TIN ĐỐI TƯỢNG CẦN XÓA", 1, 1, 5, 79);
+                IO.Writexy("Mã hóa đơn nhập:", 5, 4);
+                Hien(1, 8, hdnhap.LayDSHD_Nhap(), 5, 0);
+                mhdn = IO.ReadString(18, 4);
+                if (mhdn == null) break;
+                else hdnhap.XoaHD_Nhap(mhdn);
+                Hien(1, 8, hdnhap.LayDSHD_Nhap(), 5, 1);
             } while (true);
-            Demo.Program.Hien();
+            project_1.Program.Hien();
         }
         public void Tim()
         {
-            string hoten = "";
+            string tenhd = "";
             do
             {
                 Console.Clear();
-                IHocSinhBLL hocsinh = new HocSinhBLL();
+                IHD_NhapBLL hdnhap = new HD_NhapBLL();
                 Console.Clear();
-                IO.BoxTitle("NHAP THONG TIN CAN TIM KIEM ", 1, 1, 5, 79);
-                IO.Writexy("Ho ten:", 5, 4);
-                Hien(1, 8, hocsinh.LayDSHocSinh(), 5, 0);
-                hoten = IO.ReadString(13, 4);
-                List<HocSinh> list = hocsinh.TimHocSinh(new HocSinh(0, hoten, null, 0, 0, 0));
+                IO.BoxTitle("NHẬP THÔNG TIN CẦN TÌM KIẾM", 1, 1, 5, 79);
+                IO.Writexy("Tên hóa đơn nhập:", 5, 4);
+                Hien(1, 8, hdnhap.LayDSHD_Nhap(), 5, 0);
+                tenhd = IO.ReadString(13, 4);
+                List<HD_Nhap> list = hdnhap.TimHD_Nhap(new HD_Nhap(null, null, null, tenhd, null, 0, null, null, 0, 0, 0));
                 Hien(1, 8, list, 5, 1);
-                if (hoten == "") break;
+                if (tenhd == "") break;
             } while (true);
-            Demo.Program.Hien();
+            project_1.Program.Hien();
         }
-        public void Hien20()
-        {
-            IHocSinhBLL hocsinh = new HocSinhBLL();
-            Console.Clear();
-            Hien(1, 1, hocsinh.LayDSHocSinh(), 5, 1);
-            Demo.Program.Hien();
-        }
-        public void Hien(int xx, int yy, List<HocSinh> list, int n, int type)
+        
+        public void Hien(int xx, int yy, List<HD_Nhap> list, int n, int type)
         {
             int dau = 0; int curpage = 1; int totalpage = list.Count % n == 0 ? list.Count / n : list.Count / n + 1;
             int cuoi = list.Count <= n ? list.Count : n;
@@ -151,34 +176,42 @@ namespace project_1.Presenation
                 dau = (curpage - 1) * n;
                 cuoi = curpage * n < list.Count ? curpage * n : list.Count;
                 x = xx; y = yy; d = 0;
-                IO.Writexy("                     DANH SACH HOC SINH                              ", x, y);
-                IO.Writexy("┌───────┬────────┬──────────┬──────────┬──────────┬──────────┬──────┐", x, y + 1);
-                IO.Writexy("│ Ma HS │ Ho ten │ Que quan │Diem toan │ Diem ly  │ Diem hoa │ Tong │", x, y + 2);
-                IO.Writexy("├───────┼────────┼──────────┼──────────┼──────────┼──────────┼──────┤", x, y + 3);
+                IO.Writexy("                     DANH SÁCH HÓA ĐƠN NHẬP                             ", x, y);
+                IO.Writexy("┌─────────┬──────────┬──────────────┬────────────┬─────────────┬──────────┬─────────────────┬─────────────┬──────────┬────────────┬─────────┐", x, y + 1);
+                IO.Writexy("│ Mã loại │  Mã HDN  │ Mã nhân viên │Tên hóa đơn │ Mã sản phẩm │ Số lượng │ Mã nhà cung cấp │ Đơn vị tính │ Giá nhập │ Thành tiền │   VAT   │", x, y + 2);
+                IO.Writexy("├─────────┼──────────┼──────────────┼────────────┼─────────────┼──────────┼─────────────────┼─────────────┼──────────┼────────────┼─────────┤", x, y + 3);
                 y = y + 4;
                 for (int i = dau; i < cuoi; i++)
                 {
                     IO.Writexy("│", x, y + d, 8);
-                    IO.Writexy(list[i].MaHs.ToString(), x + 1, y + d, 8);
+                    IO.Writexy(list[i].Mal, x + 1, y + d, 8);
                     IO.Writexy("│", x + 8, y + d);
-                    IO.Writexy(list[i].Hoten, x + 9, y + d, 9);
+                    IO.Writexy(list[i].Mhdn, x + 9, y + d, 9);
                     IO.Writexy("│", x + 17, y + d);
-                    IO.Writexy(list[i].QueQuan, x + 18, y + d, 11);
+                    IO.Writexy(list[i].Manv, x + 18, y + d, 11);
                     IO.Writexy("│", x + 28, y + d);
-                    IO.Writexy(list[i].DToan.ToString(), x + 29, y + d, 11);
+                    IO.Writexy(list[i].Tenhd, x + 18, y + d, 11);
+                    IO.Writexy("│", x + 28, y + d);
+                    IO.Writexy(list[i].Msp, x + 18, y + d, 11);
+                    IO.Writexy("│", x + 28, y + d);
+                    IO.Writexy(list[i].Sl.ToString(), x + 29, y + d, 11);
                     IO.Writexy("│", x + 39, y + d);
-                    IO.Writexy(list[i].DLy.ToString(), x + 40, y + d, 11);
+                    IO.Writexy(list[i].Mancc, x + 18, y + d, 11);
+                    IO.Writexy("│", x + 28, y + d);
+                    IO.Writexy(list[i].Donvi, x + 18, y + d, 11);
+                    IO.Writexy("│", x + 28, y + d);
+                    IO.Writexy(list[i].Gianhap.ToString(), x + 40, y + d, 11);
                     IO.Writexy("│", x + 50, y + d);
-                    IO.Writexy(list[i].DHoa.ToString(), x + 51, y + d, 11);
+                    IO.Writexy(list[i].Thanhtien.ToString(), x + 51, y + d, 11);
                     IO.Writexy("│", x + 61, y + d);
-                    IO.Writexy(list[i].DTong.ToString(), x + 62, y + d, 7);
+                    IO.Writexy(list[i].VAT.ToString(), x + 62, y + d, 7);
                     IO.Writexy("│", x + 68, y + d);
                     if (i < cuoi - 1)
-                        IO.Writexy("├───────┼────────┼──────────┼──────────┼──────────┼──────────┼──────┤", x, y + d + 1);
+                        IO.Writexy("├─────────┼──────────┼──────────────┼────────────┼─────────────┼──────────┼─────────────────┼─────────────┼──────────┼────────────┼─────────┤", x, y + d + 1);
                     y = y + 1;
                     d = d + 1;
                 }
-                IO.Writexy("└───────┴────────┴──────────┴──────────┴──────────┴──────────┴──────┘", x, y + d - 1);
+                IO.Writexy("└───────┴────────┴──────────┴──────────────┴─────────────┴────────────┴────────┴──────────┴─────────────────┴──────────┴────────────────┘", x, y + d - 1);
                 IO.Writexy(" Trang " + curpage + "/" + totalpage, x, y + d);
                 IO.Writexy(" Trang " + curpage + "/" + totalpage + "          An PgUp, PgDn xem tiep, Esc de thoat...", x, y + d);
 
