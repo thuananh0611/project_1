@@ -1,0 +1,14 @@
+D:\GITHUB\project_1\project_1\project_1\obj\Debug\netcoreapp3.1\project_1.csprojAssemblyReference.cache
+D:\GITHUB\project_1\project_1\project_1\obj\Debug\netcoreapp3.1\project_1.AssemblyInfoInputs.cache
+D:\GITHUB\project_1\project_1\project_1\obj\Debug\netcoreapp3.1\project_1.AssemblyInfo.cs
+D:\GITHUB\project_1\project_1\project_1\obj\Debug\netcoreapp3.1\project_1.csproj.CoreCompileInputs.cache
+D:\GITHUB\project_1\project_1\project_1\bin\Debug\netcoreapp3.1\project_1.exe
+D:\GITHUB\project_1\project_1\project_1\bin\Debug\netcoreapp3.1\project_1.dll.config
+D:\GITHUB\project_1\project_1\project_1\bin\Debug\netcoreapp3.1\project_1.deps.json
+D:\GITHUB\project_1\project_1\project_1\bin\Debug\netcoreapp3.1\project_1.runtimeconfig.json
+D:\GITHUB\project_1\project_1\project_1\bin\Debug\netcoreapp3.1\project_1.runtimeconfig.dev.json
+D:\GITHUB\project_1\project_1\project_1\bin\Debug\netcoreapp3.1\project_1.dll
+D:\GITHUB\project_1\project_1\project_1\bin\Debug\netcoreapp3.1\project_1.pdb
+D:\GITHUB\project_1\project_1\project_1\obj\Debug\netcoreapp3.1\project_1.dll
+D:\GITHUB\project_1\project_1\project_1\obj\Debug\netcoreapp3.1\project_1.pdb
+D:\GITHUB\project_1\project_1\project_1\obj\Debug\netcoreapp3.1\project_1.genruntimeconfig.cache

@@ -9,15 +9,17 @@ namespace project_1.DataAccessLayer
     class K_HangDAL : IK_HangDAL
     {
         //Xác định đường dẫn của tệp dữ liệu K_Hang.txt
-        private string txtfile = "K_Hang.txt";
+        private string txtfile = "Data/K_Hang.txt";
         //Lấy toàn bộ dữ liệu có trong file K_Hang.txt đưa vào một danh sách
         public List<K_Hang> GetData()
         {
             List<K_Hang> list = new List<K_Hang>();
-            StreamReader fread = File.OpenText(txtfile);
-            string s = fread.ReadLine();
+            StreamReader sr = File.OpenText(txtfile);
+            var s = sr.ReadLine();
             while ( s != null)
             {
+
+
                 if (s != "")
                 {
                     s = project_1.Utility.CongCu.CatXau(s);
@@ -25,9 +27,9 @@ namespace project_1.DataAccessLayer
                     list.Add(new K_Hang(int.Parse(a[0]), a[1], a[2], DateTime.Parse(a[3]), a[4]));
                     
                 }
-                s = fread.ReadLine();
+                s = sr.ReadLine();
             }
-            fread.Close();
+            sr.Close();
             return list;
         }
         //Lấy mã khách hàng trong bản ghi cuối cùng phục vụ cho đánh mã tự động

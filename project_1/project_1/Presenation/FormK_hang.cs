@@ -25,10 +25,10 @@ namespace project_1.Presenation
                 IO.Writexy("Enter de nhap, Esc de thoat, V xem chi tiet!", 5, 8);
                 Hien(1, 13, khachhang.LayDSK_Hang(), 5, 0);
                 K_Hang kh = new K_Hang();
-                kh.Makh = int.Parse("0" + IO.ReadNumber(13, 4));
+                kh.Makh = int.Parse(IO.ReadNumber(13, 4));
                 kh.Hoten = IO.ReadString(40, 4);
                 kh.Diachi = IO.ReadString(16, 6);
-                kh.Ngaysinh = DateTime.Parse("0" + IO.ReadNumber(34, 6));
+                kh.Ngaysinh = DateTime.Parse(IO.ReadString(34, 6));
                 kh.Sdt = IO.ReadString(55, 6);
                 Console.SetCursorPosition(50, 8);
                 ConsoleKeyInfo kt = Console.ReadKey();
@@ -179,6 +179,7 @@ namespace project_1.Presenation
                 else if (kt.Key == ConsoleKey.Escape) break;
             } while (true);
         }
+        
 
     }
 }
