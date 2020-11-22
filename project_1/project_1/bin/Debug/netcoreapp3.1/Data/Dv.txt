@@ -1,0 +1,5 @@
+DV001#SPDV2#Trị mụn, khóa khuẩn#5000000#Liệu trình#1/1/2020
+DV002#SPDV2#Aqua Peeling#5000000#Liệu trình#1/1/2020
+DV003#SPDV2#Trị sẹo, trị thâm#6000000#Liệu trình#1/1/2020
+DV004#SPDV2#Chăm sóc da#Buổi#200000#1/1/2020
+DV005#SPDV2#Gội đầu dưỡng sinh#Buổi#100000#1/1/2020

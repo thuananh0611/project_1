@@ -1,0 +1,6 @@
+SP001#SPDV1#Nước hoa hồng#350000#chai#1/1/2020#50#46
+SP002#SPDV1#Sữa rửa mặt#300000#chai#1/1/2020#50#45
+SP003#SPDV1#Serum dưỡng da#400000#chai#1/1/2020#60#50
+SP004#SPDV1#Kem chống nắng#450000#tuýp#25/1/2020#60#51
+SP005#SPDV1#Collagen#600000#hộp viên nén#1/2/2020#70#60
+SP006#SPDV1#Mặt na#200000#hộp 10 miếng#1/1/2020#100#80

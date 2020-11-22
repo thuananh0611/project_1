@@ -24,7 +24,7 @@ namespace project_1.DataAccessLayer
                 {
                     s = project_1.Utility.CongCu.CatXau(s);
                     string[] a = s.Split('#');
-                    list.Add(new K_Hang(int.Parse(a[0]), a[1], a[2], DateTime.Parse(a[3]), a[4]));
+                    list.Add(new K_Hang(int.Parse(a[0]), a[1], a[2], a[3], a[4]));
                     
                 }
                 s = sr.ReadLine();
