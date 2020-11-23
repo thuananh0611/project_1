@@ -1,68 +1,102 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ComputerStore.Presenation;
 
-namespace project_1.Utility
+namespace ComputerStore.Utility
 {
-    class Dangnhap
+    public class DangNhap
     {
-        private string taikhoan;
-        private string matkhau;
-        public string Taikhoan
+        private string User;
+        private string Password;
+        public DangNhap()
+        { }
+        public string user
         {
             get
             {
-                return taikhoan;
+                return User;
             }
             set
             {
-                taikhoan = value;
+                if (value != "")
+                    User = value;
             }
         }
-        public string Matkhau
+        public string pass
         {
             get
             {
-                return matkhau;
+                return Password;
             }
             set
             {
-                matkhau = value;
+                if (value != "")
+                    Password = value;
             }
         }
-        public Dangnhap()
+        public bool Hien(int x, int y, string user, string pass)
         {
-
-        }
-        public bool Hien(int x, int y, string taikhoan, string matkhau)
-        {
-            IO.BoxTitle("DANG NHAP", x, y, 15, 60);
-            IO.Writexy("Tai khoan:", x + 3, y + 5);
-            IO.Writexy("Mat khau:", x + 3, y + 8);
-            IO.Writexy("Dang Nhap", x + 40, y + 10);
-            IO.Writexy("Ngam dinh(Tai khoan: 1 - Mat khau: 1)", x + 2, y + 12, ConsoleColor.Black, ConsoleColor.White);
-            Console.ReadKey();
-            IO.Writexy("                                     ", x + 2, y + 12, ConsoleColor.Black, ConsoleColor.White);
+            Console.BackgroundColor = ConsoleColor.Black;
+            IO.Box(0, 0, 28, 114, ConsoleColor.Black, ConsoleColor.White);
+            IO.BoxTitle("                       ĐĂNG NHẬP", x, y, 15, 60);
+            IO.Writexy("Tài khoản:", x + 3, y + 5);
+            IO.Writexy("Mật khẩu:", x + 3, y + 8);
+            IO.Writexy("Đăng nhập", x + 40, y + 10);
+            IO.Writexy("----------------------------------------------------------", x + 1, y + 11);
             do
             {
-                this.taikhoan = IO.ReadString(x + 15, y + 5);
-                this.matkhau = IO.ReadPassword(x + 15, y + 8);
-                IO.Writexy("Nhan Enter de dang nhap hoac nhan phim ESC de thoat...", x + 2, y + 12);
-                IO.Writexy("Dang Nhap", x + 40, y + 10, ConsoleColor.Blue, ConsoleColor.White);
+                IO.Clear(x + 14, y + 5, 42, ConsoleColor.Black);
+                IO.Clear(x + 13, y + 8, 42, ConsoleColor.Black);
+                do
+                {
+                    this.user = IO.ReadString(x + 15, y + 5);
+                    if (this.user == null)
+                    {
+                        IO.Clear(x + 2, y + 12, 51, ConsoleColor.Black);
+                        IO.Writexy("Nhập lại tài khoản...", x + 3, y + 12, ConsoleColor.Black, ConsoleColor.White);
+                        IO.Clear(x + 14, y + 5, 42, ConsoleColor.Black);
+                    }
+                } while (this.user == null);
+                IO.Clear(x + 2, y + 12, 51, ConsoleColor.Black);
+                do
+                {
+                    this.pass = IO.ReadPassword(x + 14, y + 8);
+                    if (this.pass == null)
+                    {
+                        IO.Clear(x + 2, y + 12, 51, ConsoleColor.Black);
+                        IO.Writexy("Nhập lại mật khẩu...", x + 3, y + 12, ConsoleColor.Black, ConsoleColor.White);
+                        IO.Clear(x + 13, y + 8, 42, ConsoleColor.Black);
+                    }
+                } while (this.pass == null);
+                IO.Clear(x + 2, y + 12, 51, ConsoleColor.Black);
+                IO.Writexy("Nhấn Enter để đăng nhập hoặc nhấn ESC để thoát...", x + 3, y + 12);
+                IO.Writexy("Đăng nhập", x + 40, y + 10, ConsoleColor.Blue, ConsoleColor.White);
                 ConsoleKeyInfo kt = Console.ReadKey();
                 if (kt.Key == ConsoleKey.Enter)
                 {
-                    if (this.taikhoan == taikhoan && this.matkhau == matkhau) return true;
+                    if (this.user == user && this.pass == pass)
+                        return true;
                     else
                     {
-                        IO.Clear(x + 2, y + 12, 55, ConsoleColor.Black);
-                        IO.Writexy("Tai khoan hoac mat khau sai, xin hay nhap lai...", x + 2, y + 12, ConsoleColor.Black, ConsoleColor.White);
-                        IO.Clear(x + 15, y + 5, 30, ConsoleColor.Black);
-                        IO.Clear(x + 15, y + 8, 30, ConsoleColor.Black);
+                        IO.Clear(x + 2, y + 12, 51, ConsoleColor.Black);
+                        IO.Writexy("Tài khoản hoặc Mật khẩu không đúng, mời nhập lại...", x + 3, y + 12, ConsoleColor.Black, ConsoleColor.White);
                     }
                 }
-                else return false;
+                else
+                    return false;
             } while (true);
+        }
+        public void Dang_Nhap()
+        {
+            DangNhap dn = new DangNhap();
+            bool ok = dn.Hien(26, 6, "1", "1");
+            if (ok)
+            {
+                FormMenuChinh.HienMNC(29, 5, ConsoleColor.Black, ConsoleColor.White);
+            }
+            else
+                Environment.Exit(0);
         }
     }
 }
