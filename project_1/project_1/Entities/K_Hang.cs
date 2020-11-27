@@ -1,81 +1,122 @@
 ﻿using System;
-using System.Collections.Generic;
+using project_1.Utility;
 using System.Text;
 
 namespace project_1.Entities
 {
+    //Khai báo các thông tin liên quan đến khách hàng
     public class K_Hang
     {
-        private string MaKH;
-        private string TenKH;
-        private string DiaChi;
-        private string SoDT;
+        #region Các thành phần dữ liệu
+            private int makh;
+            private string hoten;
+            private string diachi;
+            private string ngaysinh;
+            private string sdt;
+        #endregion
 
-        public K_Hang()
+        #region Các thuộc tính
+        public int Makh
         {
+            get { return makh; }
+            set
+            {
+                if (value >= 1)
+                    makh = value;
+            }
         }
-        public K_Hang(string makh, string tenkh, string diachi, string sdt)
+        public string Hoten
         {
-            this.MaKH = makh;
-            this.TenKH = tenkh;
-            this.DiaChi = diachi;
-            this.SoDT = sdt;
+            get
+            {
+                return hoten;
+            }
+            set
+            {
+                if (value != "")
+                    hoten = value;
+            }
         }
+        public string Diachi
+        {
+            get { return diachi; }
+            set
+            {
+                if (value != "")
+                    diachi = value;
+            }
+        }
+        public string Ngaysinh
+        {
+            get { return ngaysinh; }
+            set
+            {
+                ngaysinh = value;
+            }
+        }
+        public string Sdt
+        {
+            get { return sdt; }
+            set { sdt = value; }
+        }
+        #endregion
+
+        #region Các phương thức
+        public K_Hang() { }
+        //Phương thức thiết lập sao chép
         public K_Hang(K_Hang kh)
         {
-            this.MaKH = kh.MaKH;
-            this.TenKH = kh.TenKH;
-            this.DiaChi = kh.DiaChi;
-            this.SoDT = kh.SoDT;
+            this.makh = kh.makh;
+            this.hoten = kh.hoten;
+            this.diachi = kh.diachi;
+            this.ngaysinh = kh.ngaysinh;
+            this.sdt = kh.sdt;
         }
-
-        public string maKH
+        public K_Hang(int makh, string hoten, string diachi, string ngaysinh, string sdt)
         {
-            get
-            {
-                return MaKH;
-            }
-            set
-            {
-                if (value != "")
-                    MaKH = value;
-            }
+            this.makh = makh;
+            this.hoten = hoten;
+            this.diachi = diachi;
+            this.ngaysinh = ngaysinh;
+            this.sdt = sdt;
         }
-        public string tenKH
+        
+        public K_Hang nhap()
         {
-            get
+            //Mã tự tăng
+            //Mặc định mã kh không bị trùng
+            K_Hang kh = new K_Hang();
+            do
             {
-                return TenKH;
-            }
-            set
+                Console.Write("Nhập mã khách hàng: ");
+                kh.Makh = int.Parse(Console.ReadLine());
+            } while (kh.makh <= 0);
+            do
             {
-                if (value != "")
-                    TenKH = value;
-            }
+                Console.Write("Nhập họ và tên khách hàng: ");
+                kh.Hoten = Console.ReadLine();
+            } while (kh.hoten != null);
+            do
+            {
+                Console.Write("Nhập địa chỉ: ");
+                kh.Diachi = Console.ReadLine();
+            } while (kh.diachi != null);
+            do
+            {
+                Console.Write("Nhập ngày sinh khách hàng: ");
+                kh.Ngaysinh = Console.ReadLine();
+            } while (kh.ngaysinh != null);
+            do
+            {
+                Console.Write("Nhập số điện thoại: ");
+                kh.Sdt = Console.ReadLine();
+            } while (kh.sdt != null);
+            return kh;
         }
-        public string diaChi
+        public void hienthi()
         {
-            get
-            {
-                return DiaChi;
-            }
-            set
-            {
-                if (value != "")
-                    DiaChi = value;
-            }
+            Console.WriteLine("{0,8}\t{1,25}\t{2,3}\t{3,4}\t{4,6}", this.makh, this.hoten, this.diachi, this.ngaysinh, this.sdt);
         }
-        public string soDT
-        {
-            get
-            {
-                return SoDT;
-            }
-            set
-            {
-                if (value != "")
-                    SoDT = value;
-            }
-        }
+        #endregion
     }
 }
