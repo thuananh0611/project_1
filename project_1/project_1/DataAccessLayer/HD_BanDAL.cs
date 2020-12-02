@@ -9,7 +9,7 @@ namespace project_1.DataAccessLayer
     class HD_BanDAL : IHD_BanDAL
     {
         //Xác định đường dẫn của tệp dữ liệu HD_Ban.txt
-        private string txtfile = "HD_Ban.txt";
+        private string txtfile = "Data/HD_Ban.txt";
         //Lấy toàn bộ dữ liệu có trong file HD_Ban.txt đưa vào một danh sách
         public List<HD_Ban> GetData()
         {
@@ -22,7 +22,7 @@ namespace project_1.DataAccessLayer
                 {
                     s = project_1.Utility.CongCu.CatXau(s);
                     string[] a = s.Split('#');
-                    list.Add(new HD_Ban(a[0], a[1], a[2], a[3], a[4], a[5], a[6], double.Parse(a[7]), double.Parse(a[8])));
+                    list.Add(new HD_Ban(int.Parse(a[0]), int.Parse(a[1]), a[2], int.Parse(a[3]), int.Parse(a[4]), double.Parse(a[5]), double.Parse(a[6])));
                     s = fread.ReadLine();
                 }
             }
@@ -58,7 +58,7 @@ namespace project_1.DataAccessLayer
             int mhdb = MaHDB + 1;
             StreamWriter fwrite = File.AppendText(txtfile);
             fwrite.WriteLine();
-            fwrite.Write(hdb.Mal + "#" + mhdb + "#" + hdb.Manv + "#" + hdb.Tenhd + "#" + hdb.Msp + "#" + hdb.Makh + "#" + hdb.Thanhtien + hdb.VAT);
+            fwrite.Write(mhdb + "#" + hdb.Manv + "#" + hdb.Tenhd + "#" + hdb.Manv + "#" + hdb.Makh + "#" + hdb.Thanhtien + "#" + hdb.VAT);
             fwrite.Close();
         }
         //Cập nhật lại danh sách vào tệp
@@ -66,7 +66,7 @@ namespace project_1.DataAccessLayer
         {
             StreamWriter fwrite = File.CreateText(txtfile);
             for (int i = 0; i < list.Count; ++i)
-                fwrite.WriteLine(list[i].Mal + "#" + list[i].Mhdb + "#" + list[i].Manv + "#" + list[i].Tenhd + "#" + list[i].Msp + "#" + list[i].Mdv + "#" + list[i].Makh + "#" + list[i].Thanhtien + "#" + list[i].VAT);
+                fwrite.WriteLine(list[i].Mhdb + "#" + list[i].Manv + "#" + list[i].Tenhd + "#" + list[i].Mdv + "#" + list[i].Makh + "#" + list[i].Thanhtien + "#" + list[i].VAT);
             fwrite.Close();
         }
     }

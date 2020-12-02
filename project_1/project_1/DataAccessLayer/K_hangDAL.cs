@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using project_1.Utility;
 using System.Text;
 using System.Configuration;
@@ -16,7 +16,7 @@ namespace project_1.DataAccessLayer
             List<K_Hang> list = new List<K_Hang>();
             StreamReader sr = File.OpenText(txtfile);
             var s = sr.ReadLine();
-            while ( s != null)
+            while (s != null)
             {
 
 
@@ -25,7 +25,7 @@ namespace project_1.DataAccessLayer
                     s = project_1.Utility.CongCu.CatXau(s);
                     string[] a = s.Split('#');
                     list.Add(new K_Hang(int.Parse(a[0]), a[1], a[2], a[3], a[4]));
-                    
+
                 }
                 s = sr.ReadLine();
             }
@@ -73,4 +73,4 @@ namespace project_1.DataAccessLayer
             fwrite.Close();
         }
     }
-}*/
+}

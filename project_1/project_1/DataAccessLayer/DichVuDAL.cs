@@ -9,7 +9,7 @@ namespace project_1.DataAccessLayer
     class DichVuDAL : IDichVuDAL
     {
         //Xác định đường dẫn của tệp dữ liệu DichVu.txt
-        private string txtfile = "DichVu.txt";
+        private string txtfile = "Data/Dv.txt";
         //Lấy toàn bộ dữ liệu có trong file DichVu.txt đưa vào một danh sách
         public List<DichVu> GetData()
         {
@@ -22,7 +22,7 @@ namespace project_1.DataAccessLayer
                 {
                     s = project_1.Utility.CongCu.CatXau(s);
                     string[] a = s.Split('#');
-                    list.Add(new DichVu(a[0], a[1], a[2], double.Parse(a[3]), a[4], DateTime.Parse(a[5])));
+                    list.Add(new DichVu(int.Parse(a[0]), a[1], double.Parse(a[2]), a[3], a[4]));
 
                 }
                 s = fread.ReadLine();
@@ -59,7 +59,7 @@ namespace project_1.DataAccessLayer
             int madv = MaDV + 1;
             StreamWriter fwrite = File.AppendText(txtfile);
             fwrite.WriteLine();
-            fwrite.Write(madv + "#" + dv.Ml + "#" + dv.Tendv + "#" + dv.Gia + "#" + dv.Donvi + "#" + dv.Ngay);
+            fwrite.Write(madv + "#" + dv.Tendv + "#" + dv.Gia + "#" + dv.Donvi + "#" + dv.Ngay);
             fwrite.Close();
         }
         //Cập nhật lại danh sách vào tệp
@@ -67,7 +67,7 @@ namespace project_1.DataAccessLayer
         {
             StreamWriter fwrite = File.CreateText(txtfile);
             for (int i = 0; i < list.Count; ++i)
-                fwrite.WriteLine(list[i].Madv + "#" + list[i].Ml + "#" + list[i].Tendv + "#" + list[i].Gia + "#" + list[i].Donvi + "#" + list[i].Ngay);
+                fwrite.WriteLine(list[i].Madv + "#" + list[i].Tendv + "#" + list[i].Gia + "#" + list[i].Donvi + "#" + list[i].Ngay);
             fwrite.Close();
         }
     }

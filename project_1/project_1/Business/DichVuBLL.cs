@@ -27,7 +27,7 @@ namespace project_1.Business
             else
                 throw new Exception("Du lieu sai");
         }
-        public DichVu LayDichVu(string madv)
+        public DichVu LayDichVu(int madv)
         {
             int i;
             List<DichVu> list = dvDA.GetData();
@@ -41,7 +41,7 @@ namespace project_1.Business
                 throw new Exception("Khong ton tai ma nay");
 
         }
-        public void XoaDichVu(string madv)
+        public void XoaDichVu(int madv)
         {
             int i;
             List<DichVu> list = dvDA.GetData();
@@ -75,12 +75,12 @@ namespace project_1.Business
             List<DichVu> list = dvDA.GetData();
             List<DichVu> kq = new List<DichVu>();
             //Voi gai tri ngam dinh ban dau
-            if (dv.Tendv == null && dv.Ml == null && dv.Madv == null)
+            if (dv.Tendv == null && dv.Madv == 0)
             {
                 kq = list;
             }
             //Tim theo tên dịch vụ
-            if (dv.Tendv != null && dv.Madv == null)
+            if (dv.Tendv != null && dv.Madv == 0)
             {
                 for (int i = 0; i < list.Count; ++i)
                     if (list[i].Tendv.IndexOf(dv.Tendv) >= 0)
@@ -88,29 +88,29 @@ namespace project_1.Business
                         kq.Add(new DichVu(list[i]));
                     }
             }
-            
+
             //Tim theo ma
-            else if (dv.Tendv == null && dv.Madv != "")
+            else if (dv.Tendv == null && dv.Madv != 0)
             {
                 for (int i = 0; i < list.Count; ++i)
-                    if (list[i].Madv.IndexOf(dv.Madv) >= 0)
+                    if (list[i].Madv >= 0)
                     {
                         kq.Add(new DichVu(list[i]));
                     }
             }
             //Tim ket hop giua ten va mã dịch vụ
-            else if (dv.Tendv != null && dv.Madv != "")
+            else if (dv.Tendv != null && dv.Madv != 0)
             {
                 for (int i = 0; i < list.Count; ++i)
-                    if (list[i].Tendv.IndexOf(dv.Tendv) >= 0 && list[i].Madv.IndexOf(dv.Madv) >= 0)
+                    if (list[i].Tendv.IndexOf(dv.Tendv) >= 0 && list[i].Madv >= 0)
                     {
                         kq.Add(new DichVu(list[i]));
                     }
             }
-            
+
             else kq = null;
             return kq;
         }
-        
+
     }
 }

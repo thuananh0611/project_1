@@ -1,5 +1,6 @@
-NCC001#Hathor Beauty#Hà Nội#02342315652
-NCC002#Công ty dược Hà Nội#Hà Nội#02342235751
-NCC003#Công ty sản xuất TPCN#Hưng Yên#01442334666
-NCC004#Kiehl's#Hồ Chí Minh#09344317156
-NCC005#ABC#Bắc Ninh#09784563455
+1#Hathor Beauty#Hà Nội#02342315652
+2#Công ty dược Hà Nội#Hà Nội#02342235751
+3#Công ty sản xuất TPCN#Hưng Yên#01442334666
+4#Kiehl's#Hồ Chí Minh#09344317156
+5#ABC#Bắc Ninh#09784563455
+6#Abc#def#9029839894893859

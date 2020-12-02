@@ -10,10 +10,10 @@ namespace project_1.Business
     {
         List<HD_Ban> LayDSHD_Ban();
         void ThemHD_Ban(HD_Ban hdb);
-        void XoaHD_Ban(string mhdb);
+        void XoaHD_Ban(int mhdb);
         void SuaHD_Ban(HD_Ban hdb);
         List<HD_Ban> TimHD_Ban(HD_Ban hdb);
 
-        HD_Ban LayHD_Ban(string mhdb);
+        HD_Ban LayHD_Ban(int mhdb);
     }
 }

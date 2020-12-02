@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using project_1.Utility;
 using System.Text;
 using project_1.DataAccessLayer;
@@ -21,7 +21,7 @@ namespace project_1.Business
             if (kh.Makh != 0 && kh.Hoten != "")
             {
                 kh.Hoten = project_1.Utility.CongCu.ChuanHoaXau(kh.Hoten);
-                
+
                 khDA.Insert(kh);
             }
             else
@@ -103,7 +103,7 @@ namespace project_1.Business
             else if (kh.Hoten != null && kh.Makh != 0)
             {
                 for (int i = 0; i < list.Count; ++i)
-                    if (list[i].Hoten.IndexOf(kh.Hoten) >= 0 && list[i].Makh== kh.Makh)
+                    if (list[i].Hoten.IndexOf(kh.Hoten) >= 0 && list[i].Makh == kh.Makh)
                     {
                         kq.Add(new K_Hang(list[i]));
                     }
@@ -115,4 +115,3 @@ namespace project_1.Business
 
     }
 }
-*/

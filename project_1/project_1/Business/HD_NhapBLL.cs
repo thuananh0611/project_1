@@ -18,16 +18,15 @@ namespace project_1.Business
         }
         public void ThemHD_Nhap(HD_Nhap hdn)
         {
-            if (hdn.Mal != "" && hdn.Mhdn != "")
+            if (hdn.Mhdn != 0)
             {
-                hdn.Mal = project_1.Utility.CongCu.ChuanHoaXau(hdn.Mal);
-                hdn.Mhdn = project_1.Utility.CongCu.ChuanHoaXau(hdn.Mhdn);
+                hdn.Mhdn = hdn.Mhdn;
                 hdnDA.Insert(hdn);
             }
             else
                 throw new Exception("Du lieu sai");
         }
-        public HD_Nhap LayHD_Nhap(string mhdn)
+        public HD_Nhap LayHD_Nhap(int mhdn)
         {
             int i;
             List<HD_Nhap> list = hdnDA.GetData();
@@ -41,7 +40,7 @@ namespace project_1.Business
                 throw new Exception("Khong ton tai ma nay");
 
         }
-        public void XoaHD_Nhap(string mhdn)
+        public void XoaHD_Nhap(int mhdn)
         {
             int i;
             List<HD_Nhap> list = hdnDA.GetData();
@@ -75,12 +74,12 @@ namespace project_1.Business
             List<HD_Nhap> list = hdnDA.GetData();
             List<HD_Nhap> kq = new List<HD_Nhap>();
             //Voi gai tri ngam dinh ban dau
-            if (hdn.Mal == null && hdn.Mhdn == null && hdn.Tenhd == null)
+            if (hdn.Mhdn == 0 && hdn.Tenhd == null)
             {
                 kq = list;
             }
             //Tim theo tên hóa đơn nhập
-            if (hdn.Mal == null && hdn.Mhdn == null && hdn.Tenhd != null)
+            if (hdn.Tenhd != null)
             {
                 for (int i = 0; i < list.Count; ++i)
                     if (list[i].Tenhd.IndexOf(hdn.Tenhd) >= 0)
@@ -89,20 +88,20 @@ namespace project_1.Business
                     }
             }
 
-            //Tim theo mã hóa đơn nhận
-            else if (hdn.Mal == null && hdn.Mhdn != "" && hdn.Tenhd == null)
+            //Tim theo mã hóa đơn nhập
+            else if (hdn.Mhdn != 0)
             {
                 for (int i = 0; i < list.Count; ++i)
-                    if (list[i].Mhdn.IndexOf(hdn.Mhdn) >= 0)
+                    if (list[i].Mhdn >= 0)
                     {
                         kq.Add(new HD_Nhap(list[i]));
                     }
             }
             //Tim ket hop giua tên va mã hóa đơn
-            else if (hdn.Tenhd != null && hdn.Mhdn != "" && hdn.Mal == null)
+            else if (hdn.Tenhd != null && hdn.Mhdn != 0)
             {
                 for (int i = 0; i < list.Count; ++i)
-                    if (list[i].Tenhd.IndexOf(hdn.Tenhd) >= 0 && list[i].Mhdn.IndexOf(hdn.Mhdn) >= 0)
+                    if (list[i].Tenhd.IndexOf(hdn.Tenhd) >= 0 && list[i].Mhdn >= 0)
                     {
                         kq.Add(new HD_Nhap(list[i]));
                     }

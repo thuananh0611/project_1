@@ -10,10 +10,10 @@ namespace project_1.Business
     {
         List<DichVu> LayDSDichVu();
         void ThemDichVu(DichVu dv);
-        void XoaDichVu(string madv);
+        void XoaDichVu(int madv);
         void SuaDichVu(DichVu dv);
         List<DichVu> TimDichVu(DichVu dv);
-        
-        DichVu LayDichVu(string madv);
+
+        DichVu LayDichVu(int madv);
     }
 }

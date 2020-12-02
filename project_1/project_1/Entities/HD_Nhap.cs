@@ -7,13 +7,11 @@ namespace project_1.Entities
     public class HD_Nhap
     {
         #region Các thành phần dữ liệu
-        private string mal;
-        private string mhdn;
-        private string manv;
+        private int mhdn;
         private string tenhd;
-        private string msp;
+        private int manv;
         private int sl;
-        private string mancc;
+        private int mancc;
         private string donvi;
         private double gianhap;
         private double thanhtien;
@@ -21,41 +19,31 @@ namespace project_1.Entities
         #endregion
 
         #region Các thuộc tính
-        public string Mal
-        {
-            get { return mal; }
-            set { if (value != "") mal = value; }
-        }
-        public string Mhdn
+        public int Mhdn
         {
             get { return mhdn; }
-            set { if (value != "") mhdn = value; }
-        }
-        public string Manv
-        {
-            get { return manv; }
-            set { if (value != "") manv = value; }
+            set { if (value != 0) mhdn = value; }
         }
         public string Tenhd
         {
             get { return tenhd; }
             set { if (value != "") tenhd = value; }
         }
-        public string Msp
+        public int Manv
         {
-            get { return msp; }
-            set { if (value != "") msp = value; }
+            get { return manv; }
+            set { if (value != 0) manv = value; }
         }
         public int Sl
         {
             get { return sl; }
             set { if (value >= 0) sl = value; }
         }
-        
-        public string Mancc
+
+        public int Mancc
         {
             get { return mancc; }
-            set { if (value != "") mancc = value; }
+            set { if (value != 0) mancc = value; }
         }
         public string Donvi
         {
@@ -69,7 +57,7 @@ namespace project_1.Entities
         }
         public double Thanhtien
         {
-            get { return thanhtien; }
+            get { return thanhtien = sl * gianhap + vat ; }
             set { if (value > 0) thanhtien = value; }
         }
         public double VAT
@@ -84,11 +72,9 @@ namespace project_1.Entities
         //Phương thức thiết lập sao chép
         public HD_Nhap(HD_Nhap hdn)
         {
-            this.mal = hdn.mal;
             this.mhdn = hdn.mhdn;
-            this.manv = hdn.manv;
             this.tenhd = hdn.tenhd;
-            this.msp = hdn.msp;
+            this.manv = hdn.manv;
             this.sl = hdn.sl;
             this.mancc = hdn.mancc;
             this.donvi = hdn.donvi;
@@ -96,13 +82,11 @@ namespace project_1.Entities
             this.thanhtien = hdn.thanhtien;
             this.vat = hdn.vat;
         }
-        public HD_Nhap(string mal, string mhdn, string manv, string tenhd, string msp, int sl, string mancc, string donvi, double gianhap, double thanhtien, double vat)
+        public HD_Nhap(int mhdn, string tenhd, int manv, int sl, int mancc, string donvi, double gianhap, double thanhtien, double vat)
         {
-            this.mal = mal;
             this.mhdn = mhdn;
-            this.manv = manv;
             this.tenhd = tenhd;
-            this.msp = msp;
+            this.manv = manv;
             this.sl = sl;
             this.mancc = mancc;
             this.donvi = donvi;

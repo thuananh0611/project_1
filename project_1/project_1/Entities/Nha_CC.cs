@@ -7,17 +7,17 @@ namespace project_1.Entities
     public class Nha_CC
     {
         #region Các thành phần dữ liệu
-        private string mancc;
+        private int mancc;
         private string tenncc;
         private string diachi;
         private string sdt;
         #endregion
 
         #region Các thuộc tính
-        public string Mancc
+        public int Mancc
         {
             get { return mancc; }
-            set { if (value != "") mancc = value; }
+            set { if (value != 0) mancc = value; }
         }
         public string Tenncc
         {
@@ -46,7 +46,7 @@ namespace project_1.Entities
             this.diachi = ncc.diachi;
             this.sdt = ncc.sdt;
         }
-        public Nha_CC(string mancc, string tenncc, string diachi, string sdt)
+        public Nha_CC(int mancc, string tenncc, string diachi, string sdt)
         {
             this.mancc = mancc;
             this.tenncc = tenncc;

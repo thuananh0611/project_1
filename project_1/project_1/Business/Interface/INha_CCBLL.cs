@@ -10,10 +10,10 @@ namespace project_1.Business
     {
         List<Nha_CC> LayDSNha_CC();
         void ThemNha_CC(Nha_CC ncc);
-        void XoaNha_CC(string mancc);
+        void XoaNha_CC(int mancc);
         void SuaNha_CC(Nha_CC ncc);
         List<Nha_CC> TimNha_CC(Nha_CC ncc);
 
-        Nha_CC LayNha_CC(string mancc);
+        Nha_CC LayNha_CC(int mancc);
     }
 }

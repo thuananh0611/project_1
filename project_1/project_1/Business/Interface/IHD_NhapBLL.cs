@@ -10,10 +10,10 @@ namespace project_1.Business
     {
         List<HD_Nhap> LayDSHD_Nhap();
         void ThemHD_Nhap(HD_Nhap hdn);
-        void XoaHD_Nhap(string mahdn);
+        void XoaHD_Nhap(int mahdn);
         void SuaHD_Nhap(HD_Nhap hdn);
         List<HD_Nhap> TimHD_Nhap(HD_Nhap hdn);
 
-        HD_Nhap LayHD_Nhap(string mahdn);
+        HD_Nhap LayHD_Nhap(int mahdn);
     }
 }

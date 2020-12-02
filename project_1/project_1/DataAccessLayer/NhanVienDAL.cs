@@ -6,14 +6,14 @@ using System.IO;
 using project_1.Entities;
 namespace project_1.DataAccessLayer
 {
-    class SanPhamDAL : ISanPhamDAL
+    class NhanVienDAL : INhanVienDAL
     {
-        //Xác định đường dẫn của tệp dữ liệu SanPham.txt
-        private string txtfile = "SanPham.txt";
-        //Lấy toàn bộ dữ liệu có trong file SanPham.txt đưa vào một danh sách
-        public List<SanPham> GetData()
+        //Xác định đường dẫn của tệp dữ liệu NhanVien.txt
+        private string txtfile = "Data/N_Vien.txt";
+        //Lấy toàn bộ dữ liệu có trong file N_Vien.txt đưa vào một danh sách
+        public List<NhanVien> GetData()
         {
-            List<SanPham> list = new List<SanPham>();
+            List<NhanVien> list = new List<NhanVien>();
             StreamReader fread = File.OpenText(txtfile);
             string s = fread.ReadLine();
             while (s != null)
@@ -22,7 +22,7 @@ namespace project_1.DataAccessLayer
                 {
                     s = project_1.Utility.CongCu.CatXau(s);
                     string[] a = s.Split('#');
-                    list.Add(new SanPham(a[0], a[1], a[2], double.Parse(a[3]), a[4], DateTime.Parse(a[5]), int.Parse(a[6]), int.Parse(a[7])));
+                    list.Add(new NhanVien(int.Parse(a[0]), a[1], a[2], a[3]));
 
                 }
                 s = fread.ReadLine();
@@ -30,8 +30,8 @@ namespace project_1.DataAccessLayer
             fread.Close();
             return list;
         }
-        //Lấy mã sản phẩm trong bản ghi cuối cùng phục vụ cho đánh mã tự động
-        public int MaSP
+        //Lấy mã nhân viên trong bản ghi cuối cùng phục vụ cho đánh mã tự động
+        public int MaNV
         {
             get
             {
@@ -53,21 +53,21 @@ namespace project_1.DataAccessLayer
                 }
             }
         }
-        //Chèn một bản ghi sản phẩm vào tệp
-        public void Insert(SanPham sp)
+        //Chèn một bản ghi nhân viên vào tệp
+        public void Insert(NhanVien nv)
         {
-            int msp = MaSP + 1;
+            int mnv = MaNV + 1;
             StreamWriter fwrite = File.AppendText(txtfile);
             fwrite.WriteLine();
-            fwrite.Write(msp + "#" + sp.Ml + "#" + sp.Tensp + "#" + sp.Gia + "#" + sp.Donvi + "#" + sp.Ngay + "#" + sp.Slnv + "#" + sp.Slhc);
+            fwrite.Write(mnv + "#" + nv.Tennv + "#" + nv.Diachi + "#" + nv.Sdt);
             fwrite.Close();
         }
         //Cập nhật lại danh sách vào tệp
-        public void Update(List<SanPham> list)
+        public void Update(List<NhanVien> list)
         {
             StreamWriter fwrite = File.CreateText(txtfile);
             for (int i = 0; i < list.Count; ++i)
-                fwrite.WriteLine(list[i].Msp + "#" + list[i].Ml + "#" + list[i].Tensp + "#" + list[i].Gia + "#" + list[i].Donvi + "#" + list[i].Ngay + "#" + list[i].Slnv + "#" + list[i].Slhc);
+                fwrite.WriteLine(list[i].Mnv + "#" + list[i].Tennv + "#" + list[i].Diachi + "#" + list[i].Diachi + "#" + list[i].Sdt);
             fwrite.Close();
         }
     }

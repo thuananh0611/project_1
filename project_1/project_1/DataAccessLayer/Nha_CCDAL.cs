@@ -9,7 +9,7 @@ namespace project_1.DataAccessLayer
     class Nha_CCDAL : INha_CCDAL
     {
         //Xác định đường dẫn của tệp dữ liệu Nha_CC.txt
-        private string txtfile = "Nha_CC.txt";
+        private string txtfile = "Data/Nha_CC.txt";
         //Lấy toàn bộ dữ liệu có trong file Nha_CC.txt đưa vào một danh sách
         public List<Nha_CC> GetData()
         {
@@ -22,7 +22,7 @@ namespace project_1.DataAccessLayer
                 {
                     s = project_1.Utility.CongCu.CatXau(s);
                     string[] a = s.Split('#');
-                    list.Add(new Nha_CC(a[0], a[1], a[2], a[3]));
+                    list.Add(new Nha_CC(int.Parse(a[0]), a[1], a[2], a[3]));
 
                 }
                 s = fread.ReadLine();

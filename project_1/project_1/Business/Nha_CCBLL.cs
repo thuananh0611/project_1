@@ -18,16 +18,16 @@ namespace project_1.Business
         }
         public void ThemNha_CC(Nha_CC ncc)
         {
-            if (ncc.Mancc != "" && ncc.Tenncc != "")
+            if (ncc.Mancc != 0 && ncc.Tenncc != "")
             {
-                ncc.Mancc = project_1.Utility.CongCu.ChuanHoaXau(ncc.Mancc);
+                ncc.Mancc = ncc.Mancc;
                 ncc.Tenncc = project_1.Utility.CongCu.ChuanHoaXau(ncc.Tenncc);
                 nccDA.Insert(ncc);
             }
             else
                 throw new Exception("Du lieu sai");
         }
-        public Nha_CC LayNha_CC(string mancc)
+        public Nha_CC LayNha_CC(int mancc)
         {
             int i;
             List<Nha_CC> list = nccDA.GetData();
@@ -41,7 +41,7 @@ namespace project_1.Business
                 throw new Exception("Khong ton tai ma nay");
 
         }
-        public void XoaNha_CC(string mancc)
+        public void XoaNha_CC(int mancc)
         {
             int i;
             List<Nha_CC> list = nccDA.GetData();
@@ -75,12 +75,12 @@ namespace project_1.Business
             List<Nha_CC> list = nccDA.GetData();
             List<Nha_CC> kq = new List<Nha_CC>();
             //Voi gai tri ngam dinh ban dau
-            if (ncc.Mancc == null && ncc.Tenncc == null && ncc.Diachi == null)
+            if (ncc.Mancc == 0 && ncc.Tenncc == null && ncc.Diachi == null)
             {
                 kq = list;
             }
             //Tim theo tên nha cung cap
-            if (ncc.Mancc == null && ncc.Tenncc != null && ncc.Diachi == null)
+            if ( ncc.Tenncc != null)
             {
                 for (int i = 0; i < list.Count; ++i)
                     if (list[i].Tenncc.IndexOf(ncc.Tenncc) >= 0)
@@ -90,19 +90,19 @@ namespace project_1.Business
             }
 
             //Tim theo mã nha cung cap
-            else if (ncc.Mancc != null && ncc.Tenncc == "" && ncc.Diachi == null)
+            else if (ncc.Mancc != 0)
             {
                 for (int i = 0; i < list.Count; ++i)
-                    if (list[i].Mancc.IndexOf(ncc.Mancc) >= 0)
+                    if (list[i].Mancc >= 0)
                     {
                         kq.Add(new Nha_CC(list[i]));
                     }
             }
             //Tim ket hop giua tên va mã nha cung cap
-            else if (ncc.Mancc != null && ncc.Tenncc != "" && ncc.Diachi == null)
+            else if (ncc.Mancc != 0 && ncc.Tenncc != "" )
             {
                 for (int i = 0; i < list.Count; ++i)
-                    if (list[i].Mancc.IndexOf(ncc.Mancc) >= 0 && list[i].Tenncc.IndexOf(ncc.Mancc) >= 0)
+                    if (list[i].Mancc >= 0 && list[i].Tenncc.IndexOf(ncc.Tenncc) >= 0)
                     {
                         kq.Add(new Nha_CC(list[i]));
                     }
@@ -112,6 +112,6 @@ namespace project_1.Business
             return kq;
         }
 
-       
+
     }
 }

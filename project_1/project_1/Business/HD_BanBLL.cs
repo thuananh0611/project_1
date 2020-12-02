@@ -18,16 +18,14 @@ namespace project_1.Business
         }
         public void ThemHD_Ban(HD_Ban hdb)
         {
-            if (hdb.Mal != "" && hdb.Mhdb != "")
+            if ( hdb.Mhdb != 0)
             {
-                hdb.Mal = project_1.Utility.CongCu.ChuanHoaXau(hdb.Mal);
-                hdb.Mhdb = project_1.Utility.CongCu.ChuanHoaXau(hdb.Mhdb);
                 hdbDA.Insert(hdb);
             }
             else
                 throw new Exception("Du lieu sai");
         }
-        public HD_Ban LayHD_Ban(string mhdb)
+        public HD_Ban LayHD_Ban(int mhdb)
         {
             int i;
             List<HD_Ban> list = hdbDA.GetData();
@@ -41,7 +39,7 @@ namespace project_1.Business
                 throw new Exception("Khong ton tai ma nay");
 
         }
-        public void XoaHD_Ban(string mhdb)
+        public void XoaHD_Ban(int mhdb)
         {
             int i;
             List<HD_Ban> list = hdbDA.GetData();
@@ -75,12 +73,12 @@ namespace project_1.Business
             List<HD_Ban> list = hdbDA.GetData();
             List<HD_Ban> kq = new List<HD_Ban>();
             //Voi gai tri ngam dinh ban dau
-            if (hdb.Mal == null && hdb.Mhdb == null && hdb.Tenhd == null)
+            if (hdb.Mhdb == 0 && hdb.Tenhd == null)
             {
                 kq = list;
             }
             //Tim theo tên hóa đơn bán
-            if (hdb.Mal == null && hdb.Mhdb == null && hdb.Tenhd != null)
+            if (hdb.Mhdb == 0 && hdb.Tenhd != null)
             {
                 for (int i = 0; i < list.Count; ++i)
                     if (list[i].Tenhd.IndexOf(hdb.Tenhd) >= 0)
@@ -90,24 +88,24 @@ namespace project_1.Business
             }
 
             //Tim theo mã hóa đơn bán
-            else if (hdb.Mal == null && hdb.Mhdb != "" && hdb.Tenhd == null)
+            else if (hdb.Mhdb != 0 && hdb.Tenhd == null)
             {
                 for (int i = 0; i < list.Count; ++i)
-                    if (list[i].Mhdb.IndexOf(hdb.Mhdb) >= 0)
+                    if (list[i].Mhdb >= 0)
                     {
                         kq.Add(new HD_Ban(list[i]));
                     }
             }
             //Tim ket hop giua tên va mã hóa đơn
-            else if (hdb.Tenhd != null && hdb.Mhdb != "" && hdb.Mal == null)
+            else if (hdb.Tenhd != null && hdb.Mhdb != 0)
             {
                 for (int i = 0; i < list.Count; ++i)
-                    if (list[i].Tenhd.IndexOf(hdb.Tenhd) >= 0 && list[i].Mhdb.IndexOf(hdb.Mhdb) >= 0)
+                    if (list[i].Tenhd.IndexOf(hdb.Tenhd) >= 0 && list[i].Mhdb >= 0)
                     {
                         kq.Add(new HD_Ban(list[i]));
                     }
             }
-            
+
             else kq = null;
             return kq;
         }
