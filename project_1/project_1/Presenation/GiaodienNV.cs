@@ -110,6 +110,7 @@ namespace project_1.Presenation
             int chon;
             do
             {
+
                 Console.Clear();
                 GiaoDienDV();
                 chon = int.Parse(Console.ReadLine());
