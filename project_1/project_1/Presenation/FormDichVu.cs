@@ -32,23 +32,24 @@ namespace project_1.Presenation
                 dv.Ngay = IO.ReadString(50, 6);
                 Console.SetCursorPosition(50, 8);
                 ConsoleKeyInfo kt = Console.ReadKey();
-                
-                 if (kt.Key == ConsoleKey.V) Hien(1, 13, dichvu.LayDSDichVu(), 5, 1);
+                if (kt.Key == ConsoleKey.Escape)
+                    break;
+                else if (kt.Key == ConsoleKey.V) Hien(1, 13, dichvu.LayDSDichVu(), 5, 1);
                 else if (kt.Key == ConsoleKey.Enter) dichvu.ThemDichVu(dv);
             } while (true);
         }
         public void SuaDichVu()
         {
+            do { 
             IDichVuBLL dichvu = new DichVuBLL();
             Console.Clear();
-            IO.BoxTitle("CẬP NHẬT THÔNG TIN DỊCH VỤ", 1, 1, 10, 79);
-            IO.Writexy("Mã dv:", 5, 4);
-            IO.Writexy("Mã loại:", 20, 4);
-            IO.Writexy("Tên dịch vụ:", 45, 4);
-            IO.Writexy("Giá:", 5, 6);
-            IO.Writexy("Đơn vị:", 25, 6);
-            IO.Writexy("Ngày:", 45, 6);
-            IO.Writexy("----------------------------------------------------------------------------", 2, 7);
+                IO.BoxTitle("CẬP NHẬT THÔNG TIN DỊCH VỤ ", 1, 1, 10, 79);
+                IO.Writexy("Mã dịch vụ:", 5, 4);
+                IO.Writexy("Tên dịch vụ:", 22, 4);
+                IO.Writexy("Giá:", 5, 6);
+                IO.Writexy("Đơn vị:", 20, 6);
+                IO.Writexy("Ngày:", 40, 6);
+                IO.Writexy("----------------------------------------------------------------------------", 2, 7);
             IO.Writexy("Enter de cap nhat, Esc de thoat, V xem chi tiet!", 5, 8);
             Hien(1, 13, dichvu.LayDSDichVu(), 5, 0);
             int madv;
@@ -57,34 +58,32 @@ namespace project_1.Presenation
             string donvi;
             string ngay;
 
-            madv = int.Parse("0" + IO.ReadNumber(12, 4));
+            madv = int.Parse("0" + IO.ReadNumber(16, 4));
             DichVu dv = dichvu.LayDichVu(madv);
-            dv.Madv = int.Parse("0" + IO.ReadNumber(16, 4));
-            dv.Tendv = IO.ReadString(42, 4);
-            dv.Gia = double.Parse("0" + IO.ReadNumber(11, 6));
-            dv.Donvi = IO.ReadString(34, 6);
-            dv.Ngay = IO.ReadString(50, 6);
-
-            madv = int.Parse("0" + IO.ReadNumber(28, 4));
-            if (madv != dv.Madv && madv != 0) dv.Madv = madv;
-            tendv = IO.ReadString(55, 4);
+            IO.Writexy(dv.Tendv, 35, 4);
+            IO.Writexy(dv.Gia.ToString(), 10, 6);
+            IO.Writexy(dv.Donvi, 28, 6);
+            IO.Writexy(dv.Ngay, 46, 6);
+            
+            tendv = IO.ReadString(35, 4);
             if (tendv != dv.Tendv && tendv != null) dv.Tendv = tendv;
-            gia = double.Parse("0" + IO.ReadNumber(16, 6));
+            gia = double.Parse("0" + IO.ReadNumber(10, 6));
             if (gia != dv.Gia && gia != 0) dv.Gia = gia;
-            donvi = IO.ReadString(34, 6);
+            donvi = IO.ReadString(28, 6);
             if (donvi != dv.Donvi && donvi != null) dv.Donvi = donvi;
-            ngay = IO.ReadString(55, 6);
-            if (ngay != dv.Ngay && ngay != null) dv.Ngay = ngay;
-
-
+            ngay = IO.ReadString(46, 6);
+            if (ngay != dv.Ngay && ngay != null) dv.Ngay = ngay; 
             Console.SetCursorPosition(60, 8);
             ConsoleKeyInfo kt = Console.ReadKey();
-             if (kt.Key == ConsoleKey.V) Hien(1, 13, dichvu.LayDSDichVu(), 5, 1);
+            if (kt.Key == ConsoleKey.Escape)
+                break;
+            else if (kt.Key == ConsoleKey.V) Hien(1, 13, dichvu.LayDSDichVu(), 5, 1);
             else if (kt.Key == ConsoleKey.Enter)
             {
                 dichvu.SuaDichVu(dv);
                 Hien(1, 13, dichvu.LayDSDichVu(), 5, 1);
             }
+        } while(true);
             
         }
         public void Xoa()
@@ -98,7 +97,7 @@ namespace project_1.Presenation
                 IO.BoxTitle("NHẬP THÔNG TIN ĐỐI TƯỢNG CẦN XÓA", 1, 1, 5, 79);
                 IO.Writexy("Mã dịch vụ:", 5, 4);
                 Hien(1, 8, dichvu.LayDSDichVu(), 5, 0);
-                madv = int.Parse( IO.ReadNumber(18, 4));
+                madv = int.Parse( IO.ReadNumber(17, 4));
                 if (madv == 0) break;
                 else dichvu.XoaDichVu(madv);
                 Hien(1, 8, dichvu.LayDSDichVu(), 5, 1);
@@ -114,9 +113,9 @@ namespace project_1.Presenation
                 IDichVuBLL dichvu = new DichVuBLL();
                 Console.Clear();
                 IO.BoxTitle("NHẬP THÔNG TIN CẦN TÌM KIẾM", 1, 1, 5, 79);
-                IO.Writexy("Tên dịch vụ:", 5, 4);
+                IO.Writexy("Tên dịch vụ:", 9, 4);
                 Hien(1, 8, dichvu.LayDSDichVu(), 5, 0);
-                tendv = IO.ReadString(13, 4);
+                tendv = IO.ReadString(21, 4);
                 List<DichVu> list = dichvu.TimDichVu(new DichVu(0, tendv, 0, null, null));
                 Hien(1, 8, list, 5, 1);
                 if (tendv == "") break;

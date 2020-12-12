@@ -32,54 +32,61 @@ namespace project_1.Presenation
                 kh.Sdt = IO.ReadString(62, 6);
                 Console.SetCursorPosition(50, 8);
                 ConsoleKeyInfo kt = Console.ReadKey();
-                if (kt.Key == ConsoleKey.V) Hien(1, 13, khachhang.LayDSK_Hang(), 5, 1);
+                if (kt.Key == ConsoleKey.Escape)
+                    break;
+                else if (kt.Key == ConsoleKey.V) Hien(1, 13, khachhang.LayDSK_Hang(), 5, 1);
                 else if (kt.Key == ConsoleKey.Enter) khachhang.ThemK_Hang(kh);
             } while (true);
         }
         public void SuaK_Hang()
         {
-            IK_HangBLL khachhang = new K_HangBLL();
-            Console.Clear();
-            IO.BoxTitle("CẬP NHẬT THÔNG TIN KHÁCH HÀNG ", 1, 1, 10, 79);
-            IO.Writexy("Mã khách hàng:", 5, 4);
-            IO.Writexy("Họ tên:", 30, 4);
-            IO.Writexy("Địa chỉ:", 5, 6);
-            IO.Writexy("Ngày sinh:", 25, 6);
-            IO.Writexy("Số điện thoại:", 48, 6);
-            IO.Writexy("----------------------------------------------------------------------------", 2, 7);
-            IO.Writexy("Enter de cap nhat, Esc de thoat, V xem chi tiet!", 5, 8);
-            Hien(1, 13, khachhang.LayDSK_Hang(), 5, 0);
-            int makh;
-            string hoten;
-            string diachi;
-            string ngaysinh;
-            string sdt;
-
-            makh = int.Parse(IO.ReadNumber(12, 4));
-            K_Hang kh = khachhang.LayK_Hang(makh);
-            IO.Writexy(kh.Hoten, 28, 4);
-            IO.Writexy(kh.Diachi, 55, 4);
-            IO.Writexy(kh.Ngaysinh.ToString(), 16, 6);
-            IO.Writexy(kh.Sdt.ToString(), 34, 6);
-
-            hoten = IO.ReadString(28, 4);
-            if (hoten != kh.Hoten && hoten != null) kh.Hoten = hoten;
-            diachi = IO.ReadString(55, 4);
-            if (diachi != kh.Diachi && diachi != null) kh.Diachi = diachi;
-            ngaysinh = IO.ReadString(16, 6);
-            if (ngaysinh != kh.Ngaysinh && ngaysinh != null) kh.Ngaysinh = ngaysinh;
-            sdt = IO.ReadString(34, 6);
-            if (sdt != kh.Sdt && sdt != null) kh.Sdt = sdt;
-
-
-            Console.SetCursorPosition(60, 8);
-            ConsoleKeyInfo kt = Console.ReadKey();
-            if (kt.Key == ConsoleKey.V) Hien(1, 13, khachhang.LayDSK_Hang(), 5, 1);
-            else if (kt.Key == ConsoleKey.Enter)
+            do
             {
-                khachhang.SuaK_Hang(kh);
-                Hien(1, 13, khachhang.LayDSK_Hang(), 5, 1);
-            }
+                IK_HangBLL khachhang = new K_HangBLL();
+                Console.Clear();
+                IO.BoxTitle("CẬP NHẬT THÔNG TIN KHÁCH HÀNG ", 1, 1, 10, 79);
+                IO.Writexy("Mã khách hàng:", 5, 4);
+                IO.Writexy("Họ tên:", 30, 4);
+                IO.Writexy("Địa chỉ:", 5, 6);
+                IO.Writexy("Ngày sinh:", 25, 6);
+                IO.Writexy("Số điện thoại:", 48, 6);
+                IO.Writexy("----------------------------------------------------------------------------", 2, 7);
+                IO.Writexy("Enter de cap nhat, Esc de thoat, V xem chi tiet!", 5, 8);
+                Hien(1, 13, khachhang.LayDSK_Hang(), 5, 0);
+                int makh;
+                string hoten;
+                string diachi;
+                string ngaysinh;
+                string sdt;
+
+                makh = int.Parse(IO.ReadNumber(12, 4));
+                K_Hang kh = khachhang.LayK_Hang(makh);
+                IO.Writexy(kh.Hoten, 28, 4);
+                IO.Writexy(kh.Diachi, 55, 4);
+                IO.Writexy(kh.Ngaysinh.ToString(), 16, 6);
+                IO.Writexy(kh.Sdt.ToString(), 34, 6);
+
+                hoten = IO.ReadString(28, 4);
+                if (hoten != kh.Hoten && hoten != null) kh.Hoten = hoten;
+                diachi = IO.ReadString(55, 4);
+                if (diachi != kh.Diachi && diachi != null) kh.Diachi = diachi;
+                ngaysinh = IO.ReadString(16, 6);
+                if (ngaysinh != kh.Ngaysinh && ngaysinh != null) kh.Ngaysinh = ngaysinh;
+                sdt = IO.ReadString(34, 6);
+                if (sdt != kh.Sdt && sdt != null) kh.Sdt = sdt;
+
+
+                Console.SetCursorPosition(60, 8);
+                ConsoleKeyInfo kt = Console.ReadKey();
+                if (kt.Key == ConsoleKey.Escape)
+                    break;
+                else if (kt.Key == ConsoleKey.V) Hien(1, 13, khachhang.LayDSK_Hang(), 5, 1);
+                else if (kt.Key == ConsoleKey.Enter)
+                {
+                    khachhang.SuaK_Hang(kh);
+                    Hien(1, 13, khachhang.LayDSK_Hang(), 5, 1);
+                }
+            } while (true);
         }
 
 
@@ -95,7 +102,7 @@ namespace project_1.Presenation
                 IO.BoxTitle("NHẬP THÔNG TIN ĐỐI TƯỢNG CẦN XÓA", 1, 1, 5, 79);
                 IO.Writexy("Mã khách hàng:", 5, 4);
                 Hien(1, 8, khachhang.LayDSK_Hang(), 5, 0);
-                makh = int.Parse(IO.ReadNumber(18, 4));
+                makh = int.Parse(IO.ReadNumber(20, 4));
                 if (makh == 0) break;
                 else khachhang.XoaK_Hang(makh);
                 Hien(1, 8, khachhang.LayDSK_Hang(), 5, 1);

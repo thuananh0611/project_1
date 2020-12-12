@@ -78,7 +78,7 @@ namespace project_1.Presenation
                         Console.WriteLine("Chức năng chưa được hoàn thiện. Xin vui lòng chọn chức năng khác...");
                         Console.ReadKey(); break;
                     case 0:
-                        Console.WriteLine("Nhấn phím bất kỳ đêt thoát khỏi chương trình");
+                        Console.WriteLine("Nhấn phím bất kỳ để thoát khỏi chương trình");
                         Console.ReadKey(); Environment.Exit(0); break;
                 }
             } while (true);

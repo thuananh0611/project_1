@@ -32,53 +32,60 @@ namespace project_1.Presenation
 
                 Console.SetCursorPosition(50, 8);
                 ConsoleKeyInfo kt = Console.ReadKey();
-                if (kt.Key == ConsoleKey.V) Hien(1, 13, nccap.LayDSNha_CC(), 5, 1);
+                if (kt.Key == ConsoleKey.Escape)
+                    break;
+                else if (kt.Key == ConsoleKey.V) Hien(1, 13, nccap.LayDSNha_CC(), 5, 1);
                 else if (kt.Key == ConsoleKey.Enter) nccap.ThemNha_CC(ncc);
             } while (true);
         }
         public void SuaNha_CC()
         {
-            INha_CCBLL nccap = new Nha_CCBLL();
-            Console.Clear();
-            IO.BoxTitle("CẬP NHẬT THÔNG TIN NHÀ CUNG CẤP", 1, 1, 10, 79);
-            IO.Writexy("Mã nhà cung cấp:", 5, 4);
-            IO.Writexy("Tên nhà cung cấp:", 30, 4);
-            IO.Writexy("Địa chỉ nhà cung cấp:", 5, 6);
-            IO.Writexy("Số điện thoại:", 56, 6);
-
-
-            IO.Writexy("----------------------------------------------------------------------------", 2, 7);
-            IO.Writexy("Enter de cap nhat, Esc de thoat, V xem chi tiet!", 5, 8);
-            Hien(1, 13, nccap.LayDSNha_CC(), 5, 0);
-            int mancc;
-            string tenncc;
-            string diachi;
-            string sdt;
-
-            mancc = int.Parse (IO.ReadString(21, 4));
-            Nha_CC ncc = nccap.LayNha_CC(mancc);
-            IO.Writexy(ncc.Tenncc, 47, 4);
-            IO.Writexy(ncc.Diachi, 26, 6);
-            IO.Writexy(ncc.Sdt, 71, 6);
-
-
-            tenncc = IO.ReadString(47, 4);
-            if (tenncc != ncc.Tenncc && tenncc != null) ncc.Tenncc = tenncc;
-            diachi = IO.ReadString(26, 6);
-            if (diachi != ncc.Diachi && diachi != null) ncc.Diachi = diachi;
-            sdt = IO.ReadString(71, 6);
-            if (sdt != ncc.Sdt && sdt != null) ncc.Sdt = sdt;
-
-
-
-            Console.SetCursorPosition(60, 8);
-            ConsoleKeyInfo kt = Console.ReadKey();
-            if (kt.Key == ConsoleKey.V) Hien(1, 13, nccap.LayDSNha_CC(), 5, 1);
-            else if (kt.Key == ConsoleKey.Enter)
+            do
             {
-                nccap.SuaNha_CC(ncc);
-                Hien(1, 13, nccap.LayDSNha_CC(), 5, 1);
-            }
+                INha_CCBLL nccap = new Nha_CCBLL();
+                Console.Clear();
+                IO.BoxTitle("CẬP NHẬT THÔNG TIN NHÀ CUNG CẤP", 1, 1, 10, 79);
+                IO.Writexy("Mã nhà cung cấp:", 5, 4);
+                IO.Writexy("Tên nhà cung cấp:", 30, 4);
+                IO.Writexy("Địa chỉ nhà cung cấp:", 5, 6);
+                IO.Writexy("Số điện thoại:", 56, 6);
+
+
+                IO.Writexy("----------------------------------------------------------------------------", 2, 7);
+                IO.Writexy("Enter de cap nhat, Esc de thoat, V xem chi tiet!", 5, 8);
+                Hien(1, 13, nccap.LayDSNha_CC(), 5, 0);
+                int mancc;
+                string tenncc;
+                string diachi;
+                string sdt;
+
+                mancc = int.Parse(IO.ReadString(21, 4));
+                Nha_CC ncc = nccap.LayNha_CC(mancc);
+                IO.Writexy(ncc.Tenncc, 47, 4);
+                IO.Writexy(ncc.Diachi, 26, 6);
+                IO.Writexy(ncc.Sdt, 71, 6);
+
+
+                tenncc = IO.ReadString(47, 4);
+                if (tenncc != ncc.Tenncc && tenncc != null) ncc.Tenncc = tenncc;
+                diachi = IO.ReadString(26, 6);
+                if (diachi != ncc.Diachi && diachi != null) ncc.Diachi = diachi;
+                sdt = IO.ReadString(71, 6);
+                if (sdt != ncc.Sdt && sdt != null) ncc.Sdt = sdt;
+
+
+
+                Console.SetCursorPosition(60, 8);
+                ConsoleKeyInfo kt = Console.ReadKey();
+                if (kt.Key == ConsoleKey.Escape)
+                    break;
+                else if (kt.Key == ConsoleKey.V) Hien(1, 13, nccap.LayDSNha_CC(), 5, 1);
+                else if (kt.Key == ConsoleKey.Enter)
+                {
+                    nccap.SuaNha_CC(ncc);
+                    Hien(1, 13, nccap.LayDSNha_CC(), 5, 1);
+                }
+            } while (true);
         }
         public void Xoa()
         {
@@ -91,7 +98,7 @@ namespace project_1.Presenation
                 IO.BoxTitle("NHẬP THÔNG TIN ĐỐI TƯỢNG CẦN XÓA", 1, 1, 5, 79);
                 IO.Writexy("Mã nhà cung cấp:", 5, 4);
                 Hien(1, 8, nccap.LayDSNha_CC(), 5, 0);
-                mancc = int.Parse( IO.ReadNumber(21, 4));
+                mancc = int.Parse( IO.ReadNumber(23, 4));
                 if (mancc == 0) break;
                 else nccap.XoaNha_CC(mancc);
                 Hien(1, 8, nccap.LayDSNha_CC(), 5, 1);
@@ -108,7 +115,7 @@ namespace project_1.Presenation
                 IO.BoxTitle("NHẬP THÔNG TIN CẦN TÌM KIẾM", 1, 1, 5, 79);
                 IO.Writexy("Tên nhà cung cấp: ", 5, 4);
                 Hien(1, 8, nccap.LayDSNha_CC(), 5, 0);
-                tenncc = IO.ReadString(19, 4);
+                tenncc = IO.ReadString(24, 4);
                 List<Nha_CC> list = nccap.TimNha_CC(new Nha_CC(0, tenncc, null, null));
                 Hien(1, 8, list, 5, 1);
                 if (tenncc == "") break;

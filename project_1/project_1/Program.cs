@@ -12,7 +12,7 @@ namespace project_1
             Console.OutputEncoding = Encoding.Unicode;
             DangNhap lg = new DangNhap();
             
-            Console.SetWindowSize(76, 40);
+            Console.SetWindowSize(120, 40);
             Console.SetCursorPosition(20, 20);
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;

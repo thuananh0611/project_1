@@ -14,8 +14,8 @@ namespace project_1.Entities
         private int mancc;
         private string donvi;
         private double gianhap;
-        private double thanhtien;
         private double vat;
+        private double thanhtien;
         #endregion
 
         #region Các thuộc tính
@@ -55,15 +55,16 @@ namespace project_1.Entities
             get { return gianhap; }
             set { if (value > 0) gianhap = value; }
         }
-        public double Thanhtien
-        {
-            get { return thanhtien = sl * gianhap + vat ; }
-            set { if (value > 0) thanhtien = value; }
-        }
+        
         public double VAT
         {
             get { return vat; }
             set { if (value > 0) vat = value; }
+        }
+        public double Thanhtien
+        {
+            get { return thanhtien = sl * gianhap + VAT; }
+            set { if (value > 0) thanhtien = value; }
         }
         #endregion
 
@@ -79,10 +80,10 @@ namespace project_1.Entities
             this.mancc = hdn.mancc;
             this.donvi = hdn.donvi;
             this.gianhap = hdn.gianhap;
-            this.thanhtien = hdn.thanhtien;
             this.vat = hdn.vat;
+            this.thanhtien = hdn.thanhtien;
         }
-        public HD_Nhap(int mhdn, string tenhd, int manv, int sl, int mancc, string donvi, double gianhap, double thanhtien, double vat)
+        public HD_Nhap(int mhdn, string tenhd, int manv, int sl, int mancc, string donvi, double gianhap, double vat, double thanhtien)
         {
             this.mhdn = mhdn;
             this.tenhd = tenhd;
@@ -91,8 +92,8 @@ namespace project_1.Entities
             this.mancc = mancc;
             this.donvi = donvi;
             this.gianhap = gianhap;
-            this.thanhtien = thanhtien;
             this.vat = vat;
+            this.thanhtien = thanhtien;
         }
         #endregion
     }

@@ -116,6 +116,8 @@ namespace project_1.Presenation
             {
                 Console.Clear();
                 GiaoDienDV();
+                Console.Clear();
+                GiaoDienDV();
                 chon = int.Parse(Console.ReadLine());
                 switch (chon)
                 {
@@ -155,6 +157,8 @@ namespace project_1.Presenation
             int chon;
             do
             {
+                Console.Clear();
+                GiaoDienHDB();
                 Console.Clear();
                 GiaoDienHDB();
                 chon = int.Parse(Console.ReadLine());
@@ -197,6 +201,8 @@ namespace project_1.Presenation
             {
                 Console.Clear();
                 GiaoDienHDN();
+                Console.Clear();
+                GiaoDienHDN();
                 chon = int.Parse(Console.ReadLine());
                 switch (chon)
                 {
@@ -223,7 +229,7 @@ namespace project_1.Presenation
             Console.WriteLine("\t*              ||  1. Thêm khách hàng         ||               *");
             Console.WriteLine("\t*              ||  2. Tìm khách hàng          ||               *");
             Console.WriteLine("\t*              ||  3. Xóa khách hàng          ||               *");
-            Console.WriteLine("\t*              ||  4. Sửa khách hàng             ||               *");
+            Console.WriteLine("\t*              ||  4. Sửa khách hàng          ||               *");
             Console.WriteLine("\t*              ||  0. Thoát                   ||               *");
             Console.WriteLine("\t*              ||  =========================  ||               *");
             Console.WriteLine("\t*                                                              *");
@@ -236,6 +242,8 @@ namespace project_1.Presenation
             int chon;
             do
             {
+                Console.Clear();
+                GiaoDienKH();
                 Console.Clear();
                 GiaoDienKH();
                 chon = int.Parse(Console.ReadLine());
@@ -279,6 +287,8 @@ namespace project_1.Presenation
             {
                 Console.Clear();
                 GiaoDienNCC();
+                Console.Clear();
+                GiaoDienNCC();
                 chon = int.Parse(Console.ReadLine());
                 switch (chon)
                 {
@@ -317,6 +327,8 @@ namespace project_1.Presenation
             int chon;
             do
             {
+                Console.Clear();
+                GiaoDienNV();
                 Console.Clear();
                 GiaoDienNV();
                 chon = int.Parse(Console.ReadLine());

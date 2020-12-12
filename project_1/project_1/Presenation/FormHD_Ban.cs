@@ -11,11 +11,44 @@ namespace project_1.Presenation
     {
         public void Nhap()
         {
+           do
+            {
+                IHD_BanBLL hdban = new HD_BanBLL();
+                Console.Clear();
+                IO.BoxTitle("NHẬP THÔNG TIN HÓA ĐƠN BÁN", 1, 1, 13, 90);
+                IO.Writexy("Mã hdb:", 5, 4);
+                IO.Writexy("Tên NV:", 23, 4);
+                IO.Writexy("Tên HDB:", 41, 4);
+                IO.Writexy("Mã DV:", 5, 6);
+                IO.Writexy("Mã KH:", 22, 6);
+                IO.Writexy("Thành tiền:", 39, 6);
+                IO.Writexy("Vat:", 61, 6);
+                IO.Writexy("----------------------------------------------------------------------------", 2, 7);
+                IO.Writexy("Enter de nhap, Esc de thoat, V xem chi tiet!", 5, 8);
+                Hien(1, 15, hdban.LayDSHD_Ban(), 5, 0);
+                HD_Ban hdb = new HD_Ban();
+                hdb.Mhdb = int.Parse("0" + IO.ReadNumber(13, 4));
+                hdb.Manv = int.Parse("0" + IO.ReadNumber(31, 4));
+                hdb.Tenhd = IO.ReadString(50, 4);
+                hdb.Mdv = int.Parse("0" + IO.ReadNumber(12, 6));
+                hdb.Makh = int.Parse("0" + IO.ReadString(29, 6));
+                hdb.Thanhtien = double.Parse("0" + IO.ReadString(51, 6));
+                hdb.VAT = double.Parse("0" + IO.ReadNumber(65, 6));
+                Console.SetCursorPosition(50, 8);
+                ConsoleKeyInfo kt = Console.ReadKey();
+                if (kt.Key == ConsoleKey.Escape)
+                    break;
+                else if (kt.Key == ConsoleKey.V) Hien(1, 13, hdban.LayDSHD_Ban(), 5, 1);
+                else if (kt.Key == ConsoleKey.Enter) hdban.ThemHD_Ban(hdb);
+            } while (true);
+        }
+        public void SuaHD_Ban()
+        {
             do
             {
                 IHD_BanBLL hdban = new HD_BanBLL();
                 Console.Clear();
-                IO.BoxTitle("NHẬP THÔNG TIN HÓA ĐƠN BÁN", 1, 1, 15, 90);
+                IO.BoxTitle("CẬP NHẬT THÔNG TIN HÓA ĐƠN BÁN", 1, 1, 10, 79);
                 IO.Writexy("Mã hóa đơn:", 5, 4);
                 IO.Writexy("Mã nhân viên nhập:", 26, 4);
                 IO.Writexy("Tên hóa đơn bán:", 55, 4);
@@ -24,85 +57,53 @@ namespace project_1.Presenation
                 IO.Writexy("Thành tiền:", 50, 6);
                 IO.Writexy("VAT:", 72, 6);
                 IO.Writexy("----------------------------------------------------------------------------", 2, 7);
-                IO.Writexy("Enter de nhap, Esc de thoat, V xem chi tiet!", 5, 8);
+                IO.Writexy("Enter de cap nhat, Esc de thoat, V xem chi tiet!", 5, 8);
                 Hien(22, 20, hdban.LayDSHD_Ban(), 5, 0);
+                int mhdb;
+                int manv;
+                string tenhd;
+                int mdv;
+                int makh;
+                double thanhtien;
+                double vat;
+
+                mhdb = int.Parse("0" + IO.ReadString(16, 4));
                 HD_Ban hdb = new HD_Ban();
-                hdb.Mhdb = int.Parse("0" + IO.ReadNumber(16, 4));
                 hdb.Manv = int.Parse("0" + IO.ReadNumber(44, 4));
                 hdb.Tenhd = IO.ReadString(72, 4);
                 hdb.Mdv = int.Parse("0" + IO.ReadNumber(13, 6));
                 hdb.Makh = int.Parse("0" + IO.ReadNumber(40, 6));
                 hdb.Thanhtien = double.Parse("0" + IO.ReadNumber(62, 6));
                 hdb.VAT = double.Parse("0" + IO.ReadNumber(77, 6));
+             
+
+                mhdb = int.Parse("0" + IO.ReadNumber(16, 4));
+                if (mhdb != hdb.Mhdb && mhdb != 0) hdb.Mhdb = mhdb;
+                manv = int.Parse("0" + IO.ReadString(44, 4));
+                if (manv != hdb.Manv && manv != 0) hdb.Manv = manv;
+                tenhd = IO.ReadString(72, 4);
+                if (tenhd != hdb.Tenhd && tenhd != null) hdb.Tenhd = tenhd;
+                mdv = int.Parse("0" + IO.ReadString(13, 6));
+                if (mdv != hdb.Mdv && mdv != 0) hdb.Mdv = mdv;
+                makh = int.Parse("0" + IO.ReadString(40, 6));
+                if (makh != hdb.Makh && makh != 0) hdb.Makh = makh;
+                thanhtien = double.Parse("0" + IO.ReadNumber(62, 6));
+                if (thanhtien != hdb.Thanhtien && thanhtien != 0) hdb.Thanhtien = thanhtien;
+                vat = double.Parse("0" + IO.ReadNumber(77, 6));
+                if (vat != hdb.VAT && vat != 0) hdb.VAT = vat;
+
+
                 Console.SetCursorPosition(50, 8);
                 ConsoleKeyInfo kt = Console.ReadKey();
-                if (kt.Key == ConsoleKey.V) Hien(1, 13, hdban.LayDSHD_Ban(), 5, 1);
-                else if (kt.Key == ConsoleKey.Enter) hdban.ThemHD_Ban(hdb);
+                if (kt.Key == ConsoleKey.Escape)
+                    break;
+                else if (kt.Key == ConsoleKey.V) Hien(1, 13, hdban.LayDSHD_Ban(), 5, 1);
+                else if (kt.Key == ConsoleKey.Enter)
+                {
+                    hdban.SuaHD_Ban(hdb);
+                    Hien(1, 13, hdban.LayDSHD_Ban(), 5, 1);
+                }
             } while (true);
-        }
-        public void SuaHD_Ban()
-        {
-            IHD_BanBLL hdban = new HD_BanBLL();
-            Console.Clear();
-            IO.BoxTitle("CẬP NHẬT THÔNG TIN HÓA ĐƠN BÁN", 1, 1, 10, 79);
-            IO.Writexy("Mã hóa đơn:", 5, 4);
-            IO.Writexy("Mã nhân viên nhập:", 26, 4);
-            IO.Writexy("Tên hóa đơn bán:", 55, 4);
-            IO.Writexy("Mã dịch vụ:", 5, 6);
-            IO.Writexy("Mã khách hàng:", 25, 6);
-            IO.Writexy("Thành tiền:", 50, 6);
-            IO.Writexy("VAT:", 72, 6);
-            IO.Writexy("----------------------------------------------------------------------------", 2, 7);
-            IO.Writexy("Enter de cap nhat, Esc de thoat, V xem chi tiet!", 5, 8);
-            Hien(22, 20, hdban.LayDSHD_Ban(), 5, 0);
-            int mhdb;
-            int manv;
-            string tenhd;
-            int mdv;
-            int makh;
-            double thanhtien;
-            double vat;
-
-            mhdb = int.Parse("0" + IO.ReadString(16, 4));
-            HD_Ban hdb = new HD_Ban();
-            hdb.Manv = int.Parse("0" + IO.ReadNumber(44, 4));
-            hdb.Tenhd = IO.ReadString(72, 4);
-            hdb.Mdv = int.Parse("0" + IO.ReadNumber(13, 6));
-            hdb.Makh = int.Parse("0" + IO.ReadNumber(40, 6));
-            hdb.Thanhtien = double.Parse("0" + IO.ReadNumber(62, 6));
-            hdb.VAT = double.Parse("0" + IO.ReadNumber(77, 6));
-            /*mahs = int.Parse(IO.ReadNumber(12, 4));
-            HocSinh hs = hocsinh.LayHocSinh(mahs);
-            IO.Writexy(hs.Hoten, 28, 4);
-            IO.Writexy(hs.QueQuan, 55, 4);
-            IO.Writexy(hs.DToan.ToString(), 16, 6);
-            IO.Writexy(hs.DLy.ToString(), 34, 6);
-            IO.Writexy(hs.DHoa.ToString(), 55, 6);*/
-
-            mhdb = int.Parse("0" + IO.ReadNumber(16, 4));
-            if (mhdb != hdb.Mhdb && mhdb != 0) hdb.Mhdb = mhdb;
-            manv = int.Parse("0" + IO.ReadString(44, 4));
-            if (manv != hdb.Manv && manv != 0) hdb.Manv = manv;
-            tenhd = IO.ReadString(72, 4);
-            if (tenhd != hdb.Tenhd && tenhd != null) hdb.Tenhd = tenhd;
-            mdv = int.Parse("0" + IO.ReadString(13, 6));
-            if (mdv != hdb.Mdv && mdv != 0) hdb.Mdv = mdv;
-            makh = int.Parse("0" + IO.ReadString(40, 6));
-            if (makh != hdb.Makh && makh != 0) hdb.Makh = makh;
-            thanhtien = double.Parse("0" + IO.ReadNumber(62, 6));
-            if (thanhtien != hdb.Thanhtien && thanhtien != 0) hdb.Thanhtien = thanhtien;
-            vat = double.Parse("0" + IO.ReadNumber(77, 6));
-            if (vat != hdb.VAT && vat != 0) hdb.VAT = vat;
-
-
-            Console.SetCursorPosition(50, 8);
-            ConsoleKeyInfo kt = Console.ReadKey();
-             if (kt.Key == ConsoleKey.V) Hien(1, 13, hdban.LayDSHD_Ban(), 5, 1);
-            else if (kt.Key == ConsoleKey.Enter)
-            {
-                hdban.SuaHD_Ban(hdb);
-                Hien(1, 13, hdban.LayDSHD_Ban(), 5, 1);
-            }
             
         }
         public void Xoa()
