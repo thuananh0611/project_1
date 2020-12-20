@@ -68,7 +68,7 @@ namespace project_1.Presenation
                 double vat;
 
                 mhdb = int.Parse("0" + IO.ReadString(16, 4));
-                HD_Ban hdb = new HD_Ban();
+                HD_Ban hdb = hdban.LayHD_Ban(mhdb);
                 hdb.Manv = int.Parse("0" + IO.ReadNumber(44, 4));
                 hdb.Tenhd = IO.ReadString(72, 4);
                 hdb.Mdv = int.Parse("0" + IO.ReadNumber(13, 6));
@@ -117,7 +117,7 @@ namespace project_1.Presenation
                 IO.BoxTitle("NHẬP THÔNG TIN ĐỐI TƯỢNG CẦN XÓA", 1, 1, 5, 79);
                 IO.Writexy("Mã hóa đơn bán:", 5, 4);
                 Hien(22, 20, hdban.LayDSHD_Ban(), 5, 0);
-                mhdb = int.Parse("0" + IO.ReadString(28, 4));
+                mhdb = int.Parse("0" + IO.ReadNumber(20, 4));
                 if (mhdb == 0) break;
                 else hdban.XoaHD_Ban(mhdb);
                 Hien(1, 8, hdban.LayDSHD_Ban(), 5, 1);
@@ -134,8 +134,8 @@ namespace project_1.Presenation
                 Console.Clear();
                 IO.BoxTitle("NHẬP THÔNG TIN CẦN TÌM KIẾM", 1, 1, 5, 79);
                 IO.Writexy("Mã hóa đơn bán:", 5, 4);
-                Hien(22, 20, hdban.LayDSHD_Ban(), 5, 0);
-                mhdb = int.Parse("0" + IO.ReadString(13, 4));
+                Hien(1, 8, hdban.LayDSHD_Ban(), 5, 0);
+                mhdb = int.Parse("0" + IO.ReadNumber(20, 4));
                 List<HD_Ban> list = hdban.TimHD_Ban(new HD_Ban(mhdb, 0, null, 0, 0, 0, 0));
                 Hien(1, 8, list, 5, 1);
                 if (mhdb == 0) break;
@@ -182,7 +182,7 @@ namespace project_1.Presenation
                     y = y + 1;
                     d = d + 1;
                 }
-                IO.Writexy("└───────┴────────┴─────────────────────────────────┴──────────┴──────────┴───────────┴──────────┘", x, y + d - 1);
+                IO.Writexy("└───────┴────────┴─────────────────────────────┴─────────┴──────────┴────────────┴─────────┘", x, y + d - 1);
                 IO.Writexy(" Trang " + curpage + "/" + totalpage, x, y + d);
                 IO.Writexy(" Trang " + curpage + "/" + totalpage + "          An PgUp, PgDn xem tiep, Esc de thoat...", x, y + d);
 

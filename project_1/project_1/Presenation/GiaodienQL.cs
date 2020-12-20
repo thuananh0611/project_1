@@ -159,8 +159,6 @@ namespace project_1.Presenation
             {
                 Console.Clear();
                 GiaoDienHDB();
-                Console.Clear();
-                GiaoDienHDB();
                 chon = int.Parse(Console.ReadLine());
                 switch (chon)
                 {

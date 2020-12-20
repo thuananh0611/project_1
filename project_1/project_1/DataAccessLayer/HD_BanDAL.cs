@@ -23,8 +23,9 @@ namespace project_1.DataAccessLayer
                     s = project_1.Utility.CongCu.CatXau(s);
                     string[] a = s.Split('#');
                     list.Add(new HD_Ban(int.Parse(a[0]), int.Parse(a[1]), a[2], int.Parse(a[3]), int.Parse(a[4]), double.Parse(a[5]), double.Parse(a[6])));
-                    s = fread.ReadLine();
+                    
                 }
+                s = fread.ReadLine();
             }
             fread.Close();
             return list;
