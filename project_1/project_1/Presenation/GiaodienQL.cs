@@ -12,6 +12,7 @@ namespace project_1.Presenation
         FormK_Hang kh = new FormK_Hang();
         FormNhanVien nv = new FormNhanVien();
         FormNha_CC ncc = new FormNha_CC();
+        FormThongKe tk = new FormThongKe();
         public void GiaoDienChinh()
         {
             Console.Clear();
@@ -73,7 +74,7 @@ namespace project_1.Presenation
                         MenuNV();
                         Console.ReadKey(); break;
                     case 7:
-                        Console.WriteLine("Chức năng chưa được hoàn thiện. Xin vui lòng chọn chức năng khác...");
+                        TK();
                         Console.ReadKey(); break;
                     case 8:
                         Console.WriteLine("Chức năng chưa được hoàn thiện. Xin vui lòng chọn chức năng khác...");
@@ -157,6 +158,8 @@ namespace project_1.Presenation
             int chon;
             do
             {
+                Console.Clear();
+                GiaoDienHDB();
                 Console.Clear();
                 GiaoDienHDB();
                 chon = int.Parse(Console.ReadLine());
@@ -336,6 +339,47 @@ namespace project_1.Presenation
                     case 2: nv.Tim(); Console.ReadKey(); break;
                     case 3: nv.Xoa(); Console.ReadKey(); break;
                     case 4: nv.SuaNhanVien(); Console.ReadKey(); break;
+
+                }
+            } while (chon != 0);
+        }
+        public void GiaoDienTK()
+        {
+            Console.WriteLine("\n\n");
+            Console.WriteLine("\t****************************************************************");
+            Console.WriteLine("\t*                                                              *");
+            Console.WriteLine("\t*            HỆ THỐNG QUẢN LÝ THẨM MỸ VIỆN LACASA              *");
+            Console.WriteLine("\t*                    Người dùng: Quản lý                       *");
+            Console.WriteLine("\t*      =================================================       *");
+            Console.WriteLine("\t*                                                              *");
+            Console.WriteLine("\t*                          THỐNG KÊ                            *");
+            Console.WriteLine("\t*              ||  ===================================  ||     *");
+            Console.WriteLine("\t*              ||  1. Tổng giá trị các dv               ||     *");
+            Console.WriteLine("\t*              ||  2. Nhân viên có quê ở HD             ||     *");
+            Console.WriteLine("\t*              ||  3. Thông tin hóa đơn bán trị giá LN  ||     *");
+            Console.WriteLine("\t*              ||  0. Thoát                             ||     *");
+            Console.WriteLine("\t*              ||  ===================================  ||     *");
+            Console.WriteLine("\t*                                                              *");
+            Console.WriteLine("\t*      =================================================       *");
+            Console.WriteLine("\t****************************************************************");
+            Console.Write("\n\t               Bạn chọn chức năng nào? ");
+
+        }
+        public void TK()
+        {
+            int chon;
+            do
+            {
+                Console.Clear();
+                GiaoDienTK();
+                Console.Clear();
+                GiaoDienTK();
+                chon = int.Parse(Console.ReadLine());
+                switch (chon)
+                {
+                    case 1: tk.TongG(); Console.ReadKey(); break;
+                    case 2: tk.TimNVHD(); Console.ReadKey(); break;
+                    case 3: tk.TimHDBM(); Console.ReadKey(); break;
 
                 }
             } while (chon != 0);

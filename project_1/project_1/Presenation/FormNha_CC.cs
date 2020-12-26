@@ -44,14 +44,14 @@ namespace project_1.Presenation
             {
                 INha_CCBLL nccap = new Nha_CCBLL();
                 Console.Clear();
-                IO.BoxTitle("CẬP NHẬT THÔNG TIN NHÀ CUNG CẤP", 1, 1, 10, 79);
+                IO.BoxTitle("CẬP NHẬT THÔNG TIN NHÀ CUNG CẤP", 1, 1, 10, 89);
                 IO.Writexy("Mã nhà cung cấp:", 5, 4);
                 IO.Writexy("Tên nhà cung cấp:", 30, 4);
                 IO.Writexy("Địa chỉ nhà cung cấp:", 5, 6);
                 IO.Writexy("Số điện thoại:", 56, 6);
 
 
-                IO.Writexy("----------------------------------------------------------------------------", 2, 7);
+                IO.Writexy("--------------------------------------------------------------------------------------", 2, 7);
                 IO.Writexy("Enter de cap nhat, Esc de thoat, V xem chi tiet!", 5, 8);
                 Hien(1, 13, nccap.LayDSNha_CC(), 5, 0);
                 int mancc;
@@ -61,9 +61,9 @@ namespace project_1.Presenation
 
                 mancc = int.Parse(IO.ReadString(21, 4));
                 Nha_CC ncc = nccap.LayNha_CC(mancc);
-                IO.Writexy(ncc.Tenncc, 47, 4);
-                IO.Writexy(ncc.Diachi, 26, 6);
-                IO.Writexy(ncc.Sdt, 71, 6);
+                IO.Writexy("     ", 47, 4);
+                IO.Writexy("     ", 26, 6);
+                IO.Writexy("     ", 71, 6);
 
 
                 tenncc = IO.ReadString(47, 4);

@@ -59,20 +59,20 @@ namespace project_1.Presenation
                 string ngaysinh;
                 string sdt;
 
-                makh = int.Parse(IO.ReadNumber(12, 4));
+                makh = int.Parse(IO.ReadNumber(20, 4));
                 K_Hang kh = khachhang.LayK_Hang(makh);
-                IO.Writexy(kh.Hoten, 28, 4);
-                IO.Writexy(kh.Diachi, 55, 4);
-                IO.Writexy(kh.Ngaysinh.ToString(), 16, 6);
-                IO.Writexy(kh.Sdt.ToString(), 34, 6);
-
-                hoten = IO.ReadString(28, 4);
+                IO.Writexy("      ", 38, 4);
+                IO.Writexy("      ", 14, 6);
+                IO.Writexy("      ", 36, 6);
+                IO.Writexy("      ", 62, 6);
+                
+                hoten = IO.ReadString(38, 4);
                 if (hoten != kh.Hoten && hoten != null) kh.Hoten = hoten;
-                diachi = IO.ReadString(55, 4);
+                diachi = IO.ReadString(14, 6);
                 if (diachi != kh.Diachi && diachi != null) kh.Diachi = diachi;
-                ngaysinh = IO.ReadString(16, 6);
+                ngaysinh = IO.ReadString(36, 6);
                 if (ngaysinh != kh.Ngaysinh && ngaysinh != null) kh.Ngaysinh = ngaysinh;
-                sdt = IO.ReadString(34, 6);
+                sdt = IO.ReadString(62, 6);
                 if (sdt != kh.Sdt && sdt != null) kh.Sdt = sdt;
 
 

@@ -24,10 +24,10 @@ namespace project_1.Presenation
                 IO.Writexy("Enter de nhap, Esc de thoat, V xem chi tiet!", 5, 8);
                 Hien(1, 13, nhanvien.LayDSNhanVien(), 5, 0);
                 NhanVien nv = new NhanVien();
-                nv.Mnv = int.Parse("0" + IO.ReadNumber(20, 4));
+                nv.Mnv = int.Parse("0" + IO.ReadNumber(19, 4));
                 nv.Tennv = IO.ReadString(38, 4);
-                nv.Diachi = IO.ReadString(13, 6);
-                nv.Sdt = IO.ReadString(35, 6);
+                nv.Diachi = IO.ReadString(14, 6);
+                nv.Sdt = IO.ReadString(40, 6);
 
                 Console.SetCursorPosition(50, 8);
                 ConsoleKeyInfo kt = Console.ReadKey();
@@ -56,17 +56,17 @@ namespace project_1.Presenation
                 string diachi;
                 string sdt;
 
-                manv = int.Parse(IO.ReadNumber(12, 4));
+                manv = int.Parse(IO.ReadNumber(19, 4));
                 NhanVien nv = nhanvien.LayNhanVien(manv);
-                IO.Writexy(nv.Tennv, 28, 4);
-                IO.Writexy(nv.Diachi, 55, 4);
-                IO.Writexy(nv.Sdt, 16, 6);
+                IO.Writexy("     ", 38, 4);
+                IO.Writexy("     ", 14, 6);
+                IO.Writexy("     ", 40, 6);
 
-                tennv = IO.ReadString(28, 4);
+                tennv = IO.ReadString(38, 4);
                 if (tennv != nv.Tennv && tennv != null) nv.Tennv = tennv;
-                diachi = IO.ReadString(55, 4);
+                diachi = IO.ReadString(14, 6);
                 if (diachi != nv.Diachi && diachi != null) nv.Diachi = diachi;
-                sdt = IO.ReadString(16, 6);
+                sdt = IO.ReadString(40, 6);
                 if (sdt != nv.Sdt && sdt != null) nv.Sdt = sdt;
 
                 Console.SetCursorPosition(60, 8);
@@ -131,9 +131,9 @@ namespace project_1.Presenation
                 cuoi = curpage * n < list.Count ? curpage * n : list.Count;
                 x = xx; y = yy; d = 0;
                 IO.Writexy("                DANH SÁCH NHÂN VIÊN               ", x, y);
-                IO.Writexy("┌───────┬───────────────┬──────────┬───────────┐", x, y + 1);
-                IO.Writexy("│ Mã NV │     Họ tên    │ Địa chỉ  │  Số ĐT    │", x, y + 2);
-                IO.Writexy("├───────┼───────────────┼──────────┼───────────┤", x, y + 3);
+                IO.Writexy("┌───────┬───────────────┬──────────┬─────────────┐", x, y + 1);
+                IO.Writexy("│ Mã NV │     Họ tên    │ Địa chỉ  │  Số ĐT      │", x, y + 2);
+                IO.Writexy("├───────┼───────────────┼──────────┼─────────────┤", x, y + 3);
                 y = y + 4;
                 for (int i = dau; i < cuoi; i++)
                 {
@@ -145,13 +145,13 @@ namespace project_1.Presenation
                     IO.Writexy(list[i].Diachi, x + 26, y + d, 10);
                     IO.Writexy("|", x + 35, y + d);
                     IO.Writexy(list[i].Sdt, x + 37, y + d, 10);
-                    IO.Writexy("|", x + 47, y + d);
+                    IO.Writexy("|", x + 49, y + d);
                     if (i < cuoi - 1)
-                        IO.Writexy("├───────┼───────────────┼──────────┼───────────┤", x, y + d + 1);
+                        IO.Writexy("├───────┼───────────────┼──────────┼─────────────┤", x, y + d + 1);
                     y = y + 1;
                     d = d + 1;
                 }
-                IO.Writexy("└───────┴───────────────┴──────────┴───────────┘", x, y + d - 1);
+                IO.Writexy("└───────┴───────────────┴──────────┴─────────────┘", x, y + d - 1);
                 IO.Writexy(" Trang " + curpage + "/" + totalpage, x, y + d);
                 IO.Writexy(" Trang " + curpage + "/" + totalpage + "          An PgUp, PgDn xem tiep, Esc de thoat...", x, y + d);
 

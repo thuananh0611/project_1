@@ -48,17 +48,17 @@ namespace project_1.Presenation
             {
                 IHD_BanBLL hdban = new HD_BanBLL();
                 Console.Clear();
-                IO.BoxTitle("CẬP NHẬT THÔNG TIN HÓA ĐƠN BÁN", 1, 1, 10, 79);
+                IO.BoxTitle("CẬP NHẬT THÔNG TIN HÓA ĐƠN BÁN", 1, 1, 12, 85);
                 IO.Writexy("Mã hóa đơn:", 5, 4);
                 IO.Writexy("Mã nhân viên nhập:", 26, 4);
-                IO.Writexy("Tên hóa đơn bán:", 55, 4);
-                IO.Writexy("Mã dịch vụ:", 5, 6);
-                IO.Writexy("Mã khách hàng:", 25, 6);
-                IO.Writexy("Thành tiền:", 50, 6);
-                IO.Writexy("VAT:", 72, 6);
-                IO.Writexy("----------------------------------------------------------------------------", 2, 7);
-                IO.Writexy("Enter de cap nhat, Esc de thoat, V xem chi tiet!", 5, 8);
-                Hien(22, 20, hdban.LayDSHD_Ban(), 5, 0);
+                IO.Writexy("Tên hóa đơn bán:", 5, 6);
+                IO.Writexy("Mã dịch vụ:", 5, 8);
+                IO.Writexy("Mã khách hàng:", 25, 8);
+                IO.Writexy("Thành tiền:", 50, 8);
+                IO.Writexy("VAT:", 72, 8);
+                IO.Writexy("----------------------------------------------------------------------------", 2, 9);
+                IO.Writexy("Enter de cap nhat, Esc de thoat, V xem chi tiet!", 5, 10);
+                Hien(1, 15, hdban.LayDSHD_Ban(), 5, 0);
                 int mhdb;
                 int manv;
                 string tenhd;
@@ -67,29 +67,28 @@ namespace project_1.Presenation
                 double thanhtien;
                 double vat;
 
-                mhdb = int.Parse("0" + IO.ReadString(16, 4));
+                mhdb = int.Parse("0" + IO.ReadNumber(16, 4));
                 HD_Ban hdb = hdban.LayHD_Ban(mhdb);
-                hdb.Manv = int.Parse("0" + IO.ReadNumber(44, 4));
-                hdb.Tenhd = IO.ReadString(72, 4);
-                hdb.Mdv = int.Parse("0" + IO.ReadNumber(13, 6));
-                hdb.Makh = int.Parse("0" + IO.ReadNumber(40, 6));
-                hdb.Thanhtien = double.Parse("0" + IO.ReadNumber(62, 6));
-                hdb.VAT = double.Parse("0" + IO.ReadNumber(77, 6));
-             
+                IO.Writexy("         ", 45, 4);
+                IO.Writexy("         ", 22, 6);
+                IO.Writexy("    ", 20, 8);
+                IO.Writexy("    ", 40, 8);
+                IO.Writexy("       ", 62, 8);
+                IO.Writexy("       ", 77, 8);
 
                 mhdb = int.Parse("0" + IO.ReadNumber(16, 4));
                 if (mhdb != hdb.Mhdb && mhdb != 0) hdb.Mhdb = mhdb;
-                manv = int.Parse("0" + IO.ReadString(44, 4));
+                manv = int.Parse("0" + IO.ReadNumber(44, 4));
                 if (manv != hdb.Manv && manv != 0) hdb.Manv = manv;
-                tenhd = IO.ReadString(72, 4);
+                tenhd = IO.ReadString(21, 6);
                 if (tenhd != hdb.Tenhd && tenhd != null) hdb.Tenhd = tenhd;
-                mdv = int.Parse("0" + IO.ReadString(13, 6));
+                mdv = int.Parse("0" + IO.ReadNumber(16, 8));
                 if (mdv != hdb.Mdv && mdv != 0) hdb.Mdv = mdv;
-                makh = int.Parse("0" + IO.ReadString(40, 6));
+                makh = int.Parse("0" + IO.ReadNumber(40, 8));
                 if (makh != hdb.Makh && makh != 0) hdb.Makh = makh;
-                thanhtien = double.Parse("0" + IO.ReadNumber(62, 6));
+                thanhtien = double.Parse("0" + IO.ReadNumber(62, 8));
                 if (thanhtien != hdb.Thanhtien && thanhtien != 0) hdb.Thanhtien = thanhtien;
-                vat = double.Parse("0" + IO.ReadNumber(77, 6));
+                vat = double.Parse("0" + IO.ReadNumber(77, 8));
                 if (vat != hdb.VAT && vat != 0) hdb.VAT = vat;
 
 
@@ -97,7 +96,7 @@ namespace project_1.Presenation
                 ConsoleKeyInfo kt = Console.ReadKey();
                 if (kt.Key == ConsoleKey.Escape)
                     break;
-                else if (kt.Key == ConsoleKey.V) Hien(1, 13, hdban.LayDSHD_Ban(), 5, 1);
+                else if (kt.Key == ConsoleKey.V) Hien(1, 15, hdban.LayDSHD_Ban(), 5, 1);
                 else if (kt.Key == ConsoleKey.Enter)
                 {
                     hdban.SuaHD_Ban(hdb);

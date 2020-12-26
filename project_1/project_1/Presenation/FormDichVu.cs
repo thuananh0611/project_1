@@ -60,10 +60,11 @@ namespace project_1.Presenation
 
             madv = int.Parse("0" + IO.ReadNumber(16, 4));
             DichVu dv = dichvu.LayDichVu(madv);
-            IO.Writexy(dv.Tendv, 35, 4);
-            IO.Writexy(dv.Gia.ToString(), 10, 6);
-            IO.Writexy(dv.Donvi, 28, 6);
-            IO.Writexy(dv.Ngay, 46, 6);
+            IO.Writexy("                ", 35, 4);
+            IO.Writexy("       ", 10, 6);
+            IO.Writexy("       ", 28, 6);
+            IO.Writexy("       ", 46, 6);
+
             
             tendv = IO.ReadString(35, 4);
             if (tendv != dv.Tendv && tendv != null) dv.Tendv = tendv;
