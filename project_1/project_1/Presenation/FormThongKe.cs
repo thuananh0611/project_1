@@ -38,12 +38,15 @@ namespace project_1.Presenation
             }
             Console.ReadKey();
         }
+        private string txtfile = "Data/HD_Ban.txt";
+
         public void TimHDBM()
         {
             Console.WriteLine("Hóa đơn có giá trị lớn nhất");
             Console.WriteLine("---------------------------");
             IHD_BanBLL hdban = new HD_BanBLL();
             List<HD_Ban> list = hdban.LayDSHD_Ban();
+            HD_Ban hdb = new HD_Ban();
             double Max = double.MinValue;
             for (int i = 0; i < list.Count; i++)
             {
@@ -54,8 +57,32 @@ namespace project_1.Presenation
                 
             }
             Console.WriteLine("Giá trị của hóa đơn bán lớn nhất là: {0} ", Max);
+            StreamReader fread = File.OpenText(txtfile);
+            /*string s = fread.ReadLine();
+            if (s == Max.ToString())
+            {
+                s = project_1.Utility.CongCu.CatXau(s);
+                string[] a = s.Split('#');
+                Console.WriteLine("{0}\t{1}\t{2}", int.Parse(a[0]), a[2], a[3]);
+            }
+            s = fread.ReadLine();
+            fread.Close();*/
+            string s;
+            string ten = "";
+            int ma = 0;
+            while ((s = fread.ReadLine()) != null)
+            {
+                String[] tmp = s.Split('#');
+                if (tmp[5] == Max.ToString())
+                {
+                    ma = int.Parse(tmp[0]);
+                    ten = tmp[2];
+                }
+            }
+            Console.WriteLine("Mã hóa đơn\tTên hóa đơn");
+            Console.WriteLine(ma.ToString() + "\t\t" + ten);
+            fread.Close();
             
-            Console.ReadKey();
         }
     }
 }
