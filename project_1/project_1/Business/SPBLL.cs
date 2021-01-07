@@ -129,6 +129,21 @@ namespace project_1.Business
 
             return kt;
         }
+        public bool KT_MaNV(int manv)
+        {
+            bool kt = false;
+            List<SP> list = spDA.GetData();
+            for (int i = 0; i < list.Count; ++i)
+            {
+                if (list[i].Manv == manv)
+                {
+                    kt = true;
+                    break;
+                }
+            }
+
+            return kt;
+        }
 
     }
 }

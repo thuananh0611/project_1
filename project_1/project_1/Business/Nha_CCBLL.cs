@@ -111,6 +111,21 @@ namespace project_1.Business
             else kq = null;
             return kq;
         }
+        public bool KT_MaNCC(int mancc)
+        {
+            bool kt = false;
+            List<Nha_CC> list = nccDA.GetData();
+            for (int i = 0; i < list.Count; ++i)
+            {
+                if (list[i].Mancc == mancc)
+                {
+                    kt = true;
+                    break;
+                }
+            }
+
+            return kt;
+        }
 
 
     }

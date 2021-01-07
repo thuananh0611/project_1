@@ -14,6 +14,7 @@ namespace project_1.Presenation
             do
             {
                 INha_CCBLL nccap = new Nha_CCBLL();
+                Nha_CCBLL nccBLL = new Nha_CCBLL();
                 Console.Clear();
                 IO.BoxTitle("NHẬP THÔNG TIN NHÀ CUNG CẤP", 1, 1, 10, 79);
                 IO.Writexy("Mã nhà cung cấp:", 5, 4);
@@ -25,7 +26,29 @@ namespace project_1.Presenation
                 IO.Writexy("Enter de nhap, Esc de thoat, V xem chi tiet!", 5, 8);
                 Hien(1, 13, nccap.LayDSNha_CC(), 5, 0);
                 Nha_CC ncc = new Nha_CC();
-                ncc.Mancc = int.Parse (IO.ReadNumber(21, 4));
+                do
+                {
+                    ncc.Mancc = int.Parse(IO.ReadNumber(21, 4));
+                    if (nccBLL.KT_MaNCC(ncc.Mancc) == true)
+                    {
+                        IO.Clear(21, 4, 5, ConsoleColor.Black);
+                        IO.Clear(5, 9, 60, ConsoleColor.Black);
+                        IO.Writexy("Mã nhà cc đã tổn tại. Mời nhập mã khác.", 5, 9);
+                    }
+                    else if (ncc.Mancc <= 0)
+                    {
+                        IO.Clear(21, 4, 5, ConsoleColor.Black);
+                        IO.Clear(5, 9, 60, ConsoleColor.Black);
+                        IO.Writexy("Mã nhà cc không phù hợp. Mời nhập mã khác!", 5, 9);
+                    }
+                    else
+                    {
+                        ncc.Mancc = ncc.Mancc;
+                        IO.Clear(5, 9, 60, ConsoleColor.Black);
+                        IO.Writexy("Mã nhà cc đã được thêm mới!", 5, 9);
+                    }
+
+                } while (ncc.Mancc <= 0 || nccBLL.KT_MaNCC(ncc.Mancc) == true);
                 ncc.Tenncc = IO.ReadString(47, 4);
                 ncc.Diachi = IO.ReadString(26, 6);
                 ncc.Sdt = IO.ReadString(71, 6);

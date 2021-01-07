@@ -112,6 +112,22 @@ namespace project_1.Business
             else kq = null;
             return kq;
         }
+        public bool KT_MaKH(int makh)
+        {
+            bool kt = false;
+            List<K_Hang> list = khDA.GetData();
+            for (int i = 0; i < list.Count; ++i)
+            {
+                if (list[i].Makh == makh)
+                {
+                    kt = true;
+                    break;
+                }
+            }
+
+            return kt;
+        }
+
 
     }
 }

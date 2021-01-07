@@ -111,6 +111,22 @@ namespace project_1.Business
             else kq = null;
             return kq;
         }
+        public bool KT_MaDV(int madv)
+        {
+            bool kt = false;
+            List<DichVu> list = dvDA.GetData();
+            for (int i = 0; i < list.Count; ++i)
+            {
+                if (list[i].Madv == madv)
+                {
+                    kt = true;
+                    break;
+                }
+            }
+
+            return kt;
+        }
+
 
     }
 }

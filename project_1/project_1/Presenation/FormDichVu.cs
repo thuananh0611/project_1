@@ -14,6 +14,7 @@ namespace project_1.Presenation
             do
             {
                 IDichVuBLL dichvu = new DichVuBLL();
+                DichVuBLL dvBLL = new DichVuBLL();
                 Console.Clear();
                 IO.BoxTitle("NHẬP THÔNG TIN DỊCH VỤ ", 1, 1, 10, 79);
                 IO.Writexy("Mã dịch vụ:", 5, 4);
@@ -25,9 +26,43 @@ namespace project_1.Presenation
                 IO.Writexy("Enter de nhap, Esc de thoat, V xem chi tiet!", 5, 8);
                 Hien(1, 13, dichvu.LayDSDichVu(), 5, 0);
                 DichVu dv = new DichVu();
-                dv.Madv = int.Parse("0" + IO.ReadNumber(16, 4));
+                do
+                {
+                    dv.Madv = int.Parse("0" + IO.ReadNumber(16, 4));
+                    if (dvBLL.KT_MaDV(dv.Madv) == true)
+                    {
+                        IO.Clear(16, 4, 5, ConsoleColor.Black);
+                        IO.Clear(5, 9, 60, ConsoleColor.Black);
+                        IO.Writexy("Mã dịch vụ đã tổn tại. Mời nhập mã khác.", 5, 9);
+                    }
+                    else if (dv.Madv <= 0)
+                    {
+                        IO.Clear(16, 4, 5, ConsoleColor.Black);
+                        IO.Clear(5, 9, 60, ConsoleColor.Black);
+                        IO.Writexy("Mã dịch vụ không phù hợp. Mời nhập mã khác!", 5, 9);
+                    }
+                    else
+                    {
+                        dv.Madv = dv.Madv;
+                        IO.Clear(5, 9, 60, ConsoleColor.Black);
+                        IO.Writexy("Mã dịch vụ đã được thêm mới!", 5, 9);
+                    }
+
+                } while (dv.Madv <= 0 || dvBLL.KT_MaDV(dv.Madv) == true);
+
                 dv.Tendv = IO.ReadString(42, 4);
-                dv.Gia = double.Parse("0" + IO.ReadNumber(11, 6));
+                do
+                {
+                    dv.Gia = double.Parse("0" + IO.ReadNumber(11, 6));
+                    if (dv.Gia <= 0)
+                    {
+                        IO.Clear(11, 6, 10, ConsoleColor.Black);
+                        IO.Clear(5, 9, 60, ConsoleColor.Black);
+                        IO.Writexy("Giá nhập sai...Mời nhập lại", 5, 9);
+                    }
+                    else
+                        dv.Gia = dv.Gia;
+                } while (dv.Gia <= 0);
                 dv.Donvi = IO.ReadString(34, 6);
                 dv.Ngay = IO.ReadString(50, 6);
                 Console.SetCursorPosition(50, 8);
@@ -69,7 +104,7 @@ namespace project_1.Presenation
             tendv = IO.ReadString(35, 4);
             if (tendv != dv.Tendv && tendv != null) dv.Tendv = tendv;
             gia = double.Parse("0" + IO.ReadNumber(10, 6));
-            if (gia != dv.Gia && gia != 0) dv.Gia = gia;
+            if (gia > 0) dv.Gia = gia;
             donvi = IO.ReadString(28, 6);
             if (donvi != dv.Donvi && donvi != null) dv.Donvi = donvi;
             ngay = IO.ReadString(46, 6);

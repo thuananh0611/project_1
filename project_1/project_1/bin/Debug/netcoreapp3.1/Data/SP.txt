@@ -4,4 +4,3 @@
 1#4#Kem chống nắng#450000#tuýp#25/1/2020
 1#5#Collagen#600000#hộp viên nén#1/2/2020
 1#6#Mặt na#200000#hộp 10 miếng#1/1/2020
-Mã NV#Mã SP#Tên SP#Giá bán#Đơn vị tính#Ngày áp dụng

@@ -111,6 +111,21 @@ namespace project_1.Business
             else kq = null;
             return kq;
         }
+        public bool KT_MaNV(int mnv)
+        {
+            bool kt = false;
+            List<NhanVien> list = nvDA.GetData();
+            for (int i = 0; i < list.Count; ++i)
+            {
+                if (list[i].Mnv == mnv)
+                {
+                    kt = true;
+                    break;
+                }
+            }
+
+            return kt;
+        }
 
 
     }

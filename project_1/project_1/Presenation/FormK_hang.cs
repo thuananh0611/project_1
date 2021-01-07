@@ -14,6 +14,7 @@ namespace project_1.Presenation
             do
             {
                 IK_HangBLL khachhang = new K_HangBLL();
+                K_HangBLL khBLL = new K_HangBLL();
                 Console.Clear();
                 IO.BoxTitle("NHẬP THÔNG TIN KHÁCH HÀNG", 1, 1, 10, 79);
                 IO.Writexy("Mã khách hàng:", 5, 4);
@@ -25,6 +26,28 @@ namespace project_1.Presenation
                 IO.Writexy("Enter de nhap, Esc de thoat, V xem chi tiet!", 5, 8);
                 Hien(1, 13, khachhang.LayDSK_Hang(), 5, 0);
                 K_Hang kh = new K_Hang();
+                do
+                {
+                    kh.Makh = int.Parse("0" + IO.ReadNumber(20, 4));
+                    if (khBLL.KT_MaKH(kh.Makh) == true)
+                    {
+                        IO.Clear(20, 4, 5, ConsoleColor.Black);
+                        IO.Clear(5, 9, 60, ConsoleColor.Black);
+                        IO.Writexy("Mã khách hàng đã tổn tại. Mời nhập mã khác.", 5, 9);
+                    }
+                    else if (kh.Makh <= 0)
+                    {
+                        IO.Clear(20, 4, 5, ConsoleColor.Black);
+                        IO.Writexy("Mã khách hàng không phù hợp. Mời nhập mã khác!", 5, 9);
+                    }
+                    else
+                    {
+                        kh.Makh = kh.Makh;
+                        IO.Writexy("Mã khách hàng đã được thêm mới!", 5, 9);
+                    }
+
+                } while (kh.Makh <= 0 || khBLL.KT_MaKH(kh.Makh) == true);
+
                 kh.Makh = int.Parse("0" + IO.ReadNumber(20, 4));
                 kh.Hoten = IO.ReadString(38, 4);
                 kh.Diachi = IO.ReadString(13, 6);

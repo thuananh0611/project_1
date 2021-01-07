@@ -14,6 +14,7 @@ namespace project_1.Presenation
             do
             {
                 INhanVienBLL nhanvien = new NhanVienBLL();
+                NhanVienBLL nvBLL = new NhanVienBLL();
                 Console.Clear();
                 IO.BoxTitle("NHẬP THÔNG TIN NHÂN VIÊN", 1, 1, 10, 79);
                 IO.Writexy("Mã nhân viên:", 5, 4);
@@ -24,7 +25,30 @@ namespace project_1.Presenation
                 IO.Writexy("Enter de nhap, Esc de thoat, V xem chi tiet!", 5, 8);
                 Hien(1, 13, nhanvien.LayDSNhanVien(), 5, 0);
                 NhanVien nv = new NhanVien();
-                nv.Mnv = int.Parse("0" + IO.ReadNumber(19, 4));
+                do
+                {
+                    nv.Mnv = int.Parse("0" + IO.ReadNumber(19, 4));
+                    if (nvBLL.KT_MaNV(nv.Mnv) == true)
+                    {
+                        IO.Clear(19, 4, 5, ConsoleColor.Black);
+                        IO.Clear(5, 9, 60, ConsoleColor.Black);
+                        IO.Writexy("Mã nhân viên đã tổn tại. Mời nhập mã khác.", 5, 9);
+                    }
+                    else if (nv.Mnv <= 0)
+                    {
+                        IO.Clear(19, 4, 5, ConsoleColor.Black);
+                        IO.Clear(5, 9, 60, ConsoleColor.Black);
+                        IO.Writexy("Mã nhân viên không phù hợp. Mời nhập mã khác!", 5, 9);
+                    }
+                    else
+                    {
+                        nv.Mnv = nv.Mnv;
+                        IO.Clear(5, 9, 60, ConsoleColor.Black);
+                        IO.Writexy("Mã nhân viên đã được thêm mới!", 5, 9);
+                    }
+
+                } while (nv.Mnv <= 0 || nvBLL.KT_MaNV(nv.Mnv) == true);
+
                 nv.Tennv = IO.ReadString(38, 4);
                 nv.Diachi = IO.ReadString(14, 6);
                 nv.Sdt = IO.ReadString(40, 6);
