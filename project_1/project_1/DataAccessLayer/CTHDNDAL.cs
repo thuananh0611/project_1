@@ -30,36 +30,12 @@ namespace project_1.DataAccessLayer
             fread.Close();
             return list;
         }
-        //Lấy mã hóa đơn nhập trong bản ghi cuối cùng phục vụ cho đánh mã tự động
-        public int MaHDN
-        {
-            get
-            {
-                StreamReader fread = File.OpenText(txtfile);
-                string s = fread.ReadLine();
-                string tmp = "";
-                while (s != null)
-                {
-                    if (s != null) tmp = s;
-                    s = fread.ReadLine();
-                }
-                fread.Close();
-                if (tmp == "") return 0;
-                else
-                {
-                    tmp = project_1.Utility.CongCu.ChuanHoaXau(tmp);
-                    string[] a = tmp.Split('#');
-                    return int.Parse(a[0]);
-                }
-            }
-        }
+        
         //Chèn một bản ghi hóa đơn nhập vào tệp
         public void Insert(CTHDN cthdn)
         {
-            int mhdn = MaHDN + 1;
             StreamWriter fwrite = File.AppendText(txtfile);
-            fwrite.WriteLine();
-            fwrite.Write(mhdn + "#" + cthdn.Mancc + cthdn.Masp + "#" + cthdn.Gianhap + "#" + cthdn.Gianhap + "#" + cthdn.Thanhtien);
+            fwrite.WriteLine(cthdn.Mhdn + "#" + cthdn.Mancc + "#" + cthdn.Masp + "#" + cthdn.Gianhap + "#" + cthdn.Soluong + "#" + cthdn.Thanhtien);
             fwrite.Close();
         }
         //Cập nhật lại danh sách vào tệp
@@ -67,8 +43,40 @@ namespace project_1.DataAccessLayer
         {
             StreamWriter fwrite = File.CreateText(txtfile);
             for (int i = 0; i < list.Count; ++i)
-                fwrite.Write(list[i].Mhdn + "#" + list[i].Mancc + list[i].Masp + "#" + list[i].Gianhap + "#" + list[i].Gianhap + "#" + list[i].Thanhtien);
+                fwrite.WriteLine(list[i].Mhdn + "#" + list[i].Mancc + "#" + list[i].Masp + "#" + list[i].Gianhap + "#" + list[i].Soluong + "#" + list[i].Thanhtien);
             fwrite.Close();
         }
+        public double LayGN(int masp)
+        {
+            StreamReader sr = new StreamReader("Data/SP.txt");
+
+            string s;
+            double gn = 0;
+
+            while ((s = sr.ReadLine()) != null)
+            {
+                String[] tmp = s.Split('#');
+                if (tmp[1] == masp.ToString())
+                {
+                    StreamReader sr1 = new StreamReader(txtfile);
+                    string s1;
+                    while ((s1 = sr1.ReadLine()) != null)
+                    {
+                        string[] tmp1 = s1.Split('#');
+                        if (tmp1[2] == tmp[1])
+                        {
+                            string cc = tmp[3];
+                            tmp1[3] = tmp[3];
+                            gn = Convert.ToDouble(cc);
+                        }
+                    }
+                    sr1.Close();
+                }
+            }
+            sr.Close();
+            return gn;
+        }
+
+
     }
 }

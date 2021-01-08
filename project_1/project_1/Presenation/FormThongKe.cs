@@ -15,11 +15,16 @@ namespace project_1.Presenation
             Console.WriteLine("Tổng giá dịch vụ của Thẩm mỹ viện");
             Console.WriteLine("---------------------------------");
             StreamReader file = File.OpenText("Data/Dv.txt");
-            string s = file.ReadLine();
+            string s;
             double g = 0;
-            s = project_1.Utility.CongCu.CatXau(s);
-            string[] a = s.Split('#');
-            g += double.Parse(a[2]);
+            while ((s = file.ReadLine()) != null)
+            {
+                s = project_1.Utility.CongCu.CatXau(s);
+                string[] a = s.Split('#');
+                g += double.Parse(a[2]);
+
+            }
+            file.Close();
             Console.WriteLine(g);
         }
         

@@ -56,18 +56,37 @@ namespace project_1.Business
         }
         public void SuaHD_Nhap(HD_Nhap hdn)
         {
-            int i;
             List<HD_Nhap> list = hdnDA.GetData();
-            for (i = 0; i < list.Count; ++i)
-                if (list[i].Mhdn == hdn.Mhdn) break;
-            if (i < list.Count)
+            for (int i = 0; i < list.Count; ++i)
             {
-                list.RemoveAt(i);
-                list.Add(hdn, i);
-                hdnDA.Update(list);
+                if (list[i].Mhdn == hdn.Mhdn)
+                {
+                    list[i].Manv = hdn.Manv;
+                    list[i].Tenhd = hdn.Tenhd;
+                    list[i].Ngay = hdn.Ngay;
+                    list[i].Tongtien = hdn.Tongtien;
+                    hdnDA.Update(list);
+                }
+                else
+                {
+                    IO.Writexy(list[i].Mhdn.ToString(), 5, 13); continue;
+                }
+
+                //if (i < list.Count)
+                //{
+                //    list.RemoveAt(i);
+                //    list.Add(hdn, i);
+                //    hdnDA.Update(list);
+                //}
+                //else
+                //{
+                //    //IO.Writexy(list[i].Mhdn.ToString(), 5, 13);
+                //    throw new Exception("Khong ton tai hd nhap nay");
+
+                //}
             }
-            else
-                throw new Exception("Khong ton tai hd nhap nay");
+
+
         }
         public List<HD_Nhap> TimHD_Nhap(HD_Nhap hdn)
         {
@@ -109,6 +128,32 @@ namespace project_1.Business
 
             else kq = null;
             return kq;
+        }
+        public bool KT_MaHDN(int mhdn)
+        {
+            bool kt = false;
+            List<HD_Nhap> list = hdnDA.GetData();
+            for (int i = 0; i < list.Count; ++i)
+            {
+                if (list[i].Mhdn == mhdn)
+                {
+                    kt = true;
+                    break;
+                }
+            }
+
+            return kt;
+        }
+        public double LayGN(int masp)
+        {
+            CTHDNDAL cthdnDAL = new CTHDNDAL();
+            return cthdnDAL.LayGN(masp);
+        }
+
+        public double TongTien(int mhdn)
+        {
+            HD_NhapDAL hdnDAL = new HD_NhapDAL();
+            return hdnDAL.TongTien(mhdn);
         }
 
     }

@@ -8,14 +8,10 @@ namespace project_1.Entities
     {
         #region Các thành phần dữ liệu
         private int mhdn;
-        private string tenhd;
         private int manv;
-        private int sl;
-        private int mancc;
-        private string donvi;
-        private double gianhap;
-        private double vat;
-        private double thanhtien;
+        private string tenhd;
+        private string ngay;
+        private double tongtien;
         #endregion
 
         #region Các thuộc tính
@@ -24,47 +20,26 @@ namespace project_1.Entities
             get { return mhdn; }
             set { if (value != 0) mhdn = value; }
         }
-        public string Tenhd
-        {
-            get { return tenhd; }
-            set { if (value != "") tenhd = value; }
-        }
         public int Manv
         {
             get { return manv; }
             set { if (value != 0) manv = value; }
         }
-        public int Sl
+        public string Tenhd
         {
-            get { return sl; }
-            set { if (value >= 0) sl = value; }
-        }
-
-        public int Mancc
-        {
-            get { return mancc; }
-            set { if (value != 0) mancc = value; }
-        }
-        public string Donvi
-        {
-            get { return donvi; }
-            set { donvi = value; }
-        }
-        public double Gianhap
-        {
-            get { return gianhap; }
-            set { if (value > 0) gianhap = value; }
+            get { return tenhd; }
+            set { if (value != "") tenhd = value; }
         }
         
-        public double VAT
+        public string Ngay
         {
-            get { return vat; }
-            set { if (value > 0) vat = value; }
+            get { return ngay; }
+            set { ngay = value; }
         }
-        public double Thanhtien
+        public double Tongtien
         {
-            get { return thanhtien = sl * gianhap + VAT; }
-            set { if (value > 0) thanhtien = value; }
+            get { return tongtien; }
+            set { if (value > 0) tongtien = value; }
         }
         #endregion
 
@@ -74,26 +49,18 @@ namespace project_1.Entities
         public HD_Nhap(HD_Nhap hdn)
         {
             this.mhdn = hdn.mhdn;
-            this.tenhd = hdn.tenhd;
             this.manv = hdn.manv;
-            this.sl = hdn.sl;
-            this.mancc = hdn.mancc;
-            this.donvi = hdn.donvi;
-            this.gianhap = hdn.gianhap;
-            this.vat = hdn.vat;
-            this.thanhtien = hdn.thanhtien;
+            this.tenhd = hdn.tenhd;
+            this.ngay = hdn.ngay;
+            this.tongtien = hdn.tongtien;
         }
-        public HD_Nhap(int mhdn, string tenhd, int manv, int sl, int mancc, string donvi, double gianhap, double vat, double thanhtien)
+        public HD_Nhap(int mhdn, int manv, string tenhd, string ngay, double tongtien)
         {
             this.mhdn = mhdn;
-            this.tenhd = tenhd;
             this.manv = manv;
-            this.sl = sl;
-            this.mancc = mancc;
-            this.donvi = donvi;
-            this.gianhap = gianhap;
-            this.vat = vat;
-            this.thanhtien = thanhtien;
+            this.tenhd = tenhd;
+            this.ngay = ngay;
+            this.tongtien = tongtien;
         }
         #endregion
     }

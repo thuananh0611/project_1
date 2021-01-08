@@ -237,6 +237,7 @@ namespace project_1.Presenation
             Console.WriteLine("\t*              ||  2. Tìm hóa đơn nhập        ||               *");
             Console.WriteLine("\t*              ||  3. Xóa hóa đơn nhập        ||               *");
             Console.WriteLine("\t*              ||  4. Sửa hóa đơn nhập        ||               *");
+            Console.WriteLine("\t*              ||  5. Xem chi tiết HDN        ||               *");
             Console.WriteLine("\t*              ||  0. Thoát                   ||               *");
             Console.WriteLine("\t*              ||  =========================  ||               *");
             Console.WriteLine("\t*                                                              *");
@@ -260,7 +261,7 @@ namespace project_1.Presenation
                     case 2: hdn.Tim(); Console.ReadKey(); break;
                     case 3: hdn.Xoa(); Console.ReadKey(); break;
                     case 4: hdn.SuaHD_Nhap(); Console.ReadKey(); break;
-
+                    case 5: hdn.XemCT(); Console.ReadKey(); break;
                 }
             } while (chon != 0);
 

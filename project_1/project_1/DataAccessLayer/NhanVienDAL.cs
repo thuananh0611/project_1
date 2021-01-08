@@ -67,7 +67,7 @@ namespace project_1.DataAccessLayer
         {
             StreamWriter fwrite = File.CreateText(txtfile);
             for (int i = 0; i < list.Count; ++i)
-                fwrite.WriteLine(list[i].Mnv + "#" + list[i].Tennv + "#" + list[i].Diachi + "#" + list[i].Diachi + "#" + list[i].Sdt);
+                fwrite.WriteLine(list[i].Mnv + "#" + list[i].Tennv + "#" + list[i].Diachi + "#" + list[i].Sdt);
             fwrite.Close();
         }
     }

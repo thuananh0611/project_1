@@ -93,9 +93,9 @@ namespace project_1.Business
             else if (nv.Mnv != 0)
             {
                 for (int i = 0; i < list.Count; ++i)
-                    if (list[i].Mnv >= 0)
+                    if (list[i].Mnv >= 0 && list[i].Mnv==nv.Mnv)
                     {
-                        kq.Add(new NhanVien(list[i]));
+                        kq.Add(list[i]);
                     }
             }
             //Tim ket hop giua tên va mã loai nhan vien

@@ -13,6 +13,7 @@ namespace project_1.Presenation
         FormNhanVien nv = new FormNhanVien();
         FormNha_CC ncc = new FormNha_CC();
         FormThongKe tk = new FormThongKe();
+        FormSP sp = new FormSP();
 
         public void GiaoDienChinh()
         {
@@ -26,13 +27,15 @@ namespace project_1.Presenation
             Console.WriteLine("\t*                                                              *");
             Console.WriteLine("\t*             ||  =========================  ||                *");
             Console.WriteLine("\t*             ||  1. Quản lý DỊCH VỤ         ||                *");
-            Console.WriteLine("\t*             ||  2. Quản lý HÓA ĐƠN BÁN     ||                *");
-            Console.WriteLine("\t*             ||  3. Quản lý HÓA ĐƠN NHẬP    ||                *");
-            Console.WriteLine("\t*             ||  4. Quản lý KHÁCH HÀNG      ||                *");
-            Console.WriteLine("\t*             ||  5. Quản lý NHÀ CUNG CẤP    ||                *");
-            Console.WriteLine("\t*             ||  6. Thống kê                ||                *");
-            Console.WriteLine("\t*             ||  7. Sao kê dữ liệu          ||                *");
-            Console.WriteLine("\t*             ||  8. Hướng dẫn sử dụng       ||                *");
+            Console.WriteLine("\t*             ||  2. Quản lý SẢN PHẨM        ||                *");
+            Console.WriteLine("\t*             ||  3. Quản lý HÓA ĐƠN BÁN     ||                *");
+            Console.WriteLine("\t*             ||  4. Quản lý HÓA ĐƠN NHẬP    ||                *");
+            Console.WriteLine("\t*             ||  5. Quản lý KHÁCH HÀNG      ||                *");
+            Console.WriteLine("\t*             ||  6. Quản lý NHÀ CUNG CẤP    ||                *");
+            Console.WriteLine("\t*             ||  7. Quản lý NHÂN VIÊN       ||                *");
+            Console.WriteLine("\t*             ||  8. Thống kê                ||                *");
+            Console.WriteLine("\t*             ||  9. Sao kê dữ liệu          ||                *");
+            Console.WriteLine("\t*             ||  10. Hướng dẫn sử dụng      ||                *");
             Console.WriteLine("\t*             ||  0. Thoát                   ||                *");
             Console.WriteLine("\t*             ||  =========================  ||                *");
             Console.WriteLine("\t*                                                              *");
@@ -59,28 +62,31 @@ namespace project_1.Presenation
                         MenuDV();
                         Console.ReadKey(); break;
                     case 2:
-                        MenuHDB();
+                        MenuSP();
                         Console.ReadKey(); break;
                     case 3:
-                        MenuHDN();
+                        MenuHDB();
                         Console.ReadKey(); break;
                     case 4:
-                        MenuKH();
+                        MenuHDN();
                         Console.ReadKey(); break;
                     case 5:
-                        MenuNCC();
+                        MenuKH();
                         Console.ReadKey(); break;
                     case 6:
-                        Console.WriteLine("Chức năng chưa được hoàn thiện. Xin vui lòng chọn chức năng khác...");
+                        MenuNCC();
                         Console.ReadKey(); break;
                     case 7:
-                        Console.WriteLine("Chức năng chưa được hoàn thiện. Xin vui lòng chọn chức năng khác...");
+                        TK();
                         Console.ReadKey(); break;
                     case 8:
                         Console.WriteLine("Chức năng chưa được hoàn thiện. Xin vui lòng chọn chức năng khác...");
                         Console.ReadKey(); break;
+                    case 9:
+                        Console.WriteLine("Chức năng chưa được hoàn thiện. Xin vui lòng chọn chức năng khác...");
+                        Console.ReadKey(); break;
                     case 0:
-                        Console.WriteLine("Nhấn phím bất kỳ để thoát khỏi chương trình");
+                        Console.WriteLine("Nhấn phím bất kỳ đêt thoát khỏi chương trình");
                         Console.ReadKey(); Environment.Exit(0); break;
                 }
             } while (true);
@@ -127,6 +133,50 @@ namespace project_1.Presenation
             } while (chon != 0);
 
         }
+        public void GiaoDienSP()
+        {
+            Console.WriteLine("\n\n");
+            Console.WriteLine("\t****************************************************************");
+            Console.WriteLine("\t*                                                              *");
+            Console.WriteLine("\t*            HỆ THỐNG QUẢN LÝ THẨM MỸ VIỆN LACASA              *");
+            Console.WriteLine("\t*                    Người dùng: Nhân viên                     *");
+            Console.WriteLine("\t*      =================================================       *");
+            Console.WriteLine("\t*                                                              *");
+            Console.WriteLine("\t*                     QUẢN LÝ SẢN PHẨM                         *");
+            Console.WriteLine("\t*              ||  =========================  ||               *");
+            Console.WriteLine("\t*              ||  1. Thêm sản phẩm           ||               *");
+            Console.WriteLine("\t*              ||  2. Tìm sản phẩm            ||               *");
+            Console.WriteLine("\t*              ||  3. Xóa sản phẩm            ||               *");
+            Console.WriteLine("\t*              ||  4. Sửa sản phẩm            ||               *");
+            Console.WriteLine("\t*              ||  0. Thoát                   ||               *");
+            Console.WriteLine("\t*              ||  =========================  ||               *");
+            Console.WriteLine("\t*                                                              *");
+            Console.WriteLine("\t*      =================================================       *");
+            Console.WriteLine("\t****************************************************************");
+            Console.Write("\n\t               Bạn chọn chức năng nào? ");
+        }
+        public void MenuSP()
+        {
+            int chon;
+            do
+            {
+                Console.Clear();
+                GiaoDienSP();
+                Console.Clear();
+                GiaoDienSP();
+                chon = int.Parse(Console.ReadLine());
+                switch (chon)
+                {
+                    case 1: sp.Nhap(); Console.ReadKey(); break;
+                    case 2: sp.Tim(); Console.ReadKey(); break;
+                    case 3: sp.Xoa(); Console.ReadKey(); break;
+                    case 4: sp.SuaSP(); Console.ReadKey(); break;
+
+                }
+            } while (chon != 0);
+
+        }
+
         public void GiaoDienHDB()
         {
             Console.WriteLine("\n\n");

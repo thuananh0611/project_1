@@ -22,7 +22,7 @@ namespace project_1.DataAccessLayer
                 {
                     s = project_1.Utility.CongCu.CatXau(s);
                     string[] a = s.Split('#');
-                    list.Add(new HD_Nhap(int.Parse(a[0]), a[1], int.Parse(a[2]), int.Parse(a[3]),int.Parse(a[4]), a[5], double.Parse(a[6]), double.Parse(a[7]), double.Parse(a[8])));
+                    list.Add(new HD_Nhap(int.Parse(a[0]), int.Parse(a[1]), a[2], a[3], double.Parse(a[4])));
 
                 }
                 s = fread.ReadLine();
@@ -59,7 +59,7 @@ namespace project_1.DataAccessLayer
             int mhdn = MaHDN + 1;
             StreamWriter fwrite = File.AppendText(txtfile);
             fwrite.WriteLine();
-            fwrite.Write(mhdn + "#" + hdn.Tenhd + "#" + hdn.Manv + "#" + "#" + hdn.Sl + "#" + hdn.Mancc + hdn.Donvi + "#" + hdn.Gianhap + "#" + hdn.VAT + "#" + hdn.Thanhtien);
+            fwrite.Write(mhdn + "#" +  hdn.Manv + "#"  + hdn.Tenhd + "#" + hdn.Ngay + "#" + hdn.Tongtien);
             fwrite.Close();
         }
         //Cập nhật lại danh sách vào tệp
@@ -67,8 +67,43 @@ namespace project_1.DataAccessLayer
         {
             StreamWriter fwrite = File.CreateText(txtfile);
             for (int i = 0; i < list.Count; ++i)
-                fwrite.Write(list[i].Mhdn + "#" + list[i].Tenhd + "#" + list[i].Manv + "#"  + list[i].Sl + "#" + list[i].Mancc + list[i].Donvi + "#" + list[i].Gianhap + "#" + list[i].VAT + "#" + list[i].Thanhtien);
+                fwrite.WriteLine(list[i].Mhdn + "#" + list[i].Manv + "#" + list[i].Tenhd   + "#" + list[i].Ngay + "#" + list[i].Tongtien);
             fwrite.Close();
         }
+        public double TongTien(int mhdn)
+        {
+            StreamReader sr = new StreamReader(txtfile);
+
+            string s;
+            double tongtien = 0;
+
+            while ((s = sr.ReadLine()) != null)
+            {
+                String[] tmp = s.Split('#');
+                if (tmp[0] == mhdn.ToString())
+                {
+                    StreamReader sr1 = new StreamReader("Data/CTHDN.txt");
+                    string s1;
+                    while ((s1 = sr1.ReadLine()) != null)
+                    {
+                        string[] tmp1 = s1.Split('#');
+                        if (tmp1[0] == tmp[0])
+                        {
+                            double tt = double.Parse(tmp1[5]);
+                            tongtien += tt;
+                        }
+                    }
+                    sr1.Close();
+                }
+            }
+            sr.Close();
+            return tongtien;
+        }
+        public double LayGN(int masp)
+        {
+            CTHDNDAL cthdnDAL = new CTHDNDAL();
+            return cthdnDAL.LayGN(masp);
+        }
+
     }
 }
